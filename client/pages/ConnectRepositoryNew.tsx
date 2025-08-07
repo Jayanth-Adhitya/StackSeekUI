@@ -160,7 +160,7 @@ export default function ConnectRepository() {
                 <CardContent className="p-6">
                   <div className="flex items-center gap-4 mb-4">
                     <div className={`p-3 rounded-lg ${provider.color} transition-transform duration-300 hover:scale-110`}>
-                      <provider.icon className="h-6 w-6" />
+                      <provider.icon />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
