@@ -922,14 +922,14 @@ export default function Dashboard() {
                       style={{
                         width: "24px",
                         height: "24px",
-                        backgroundColor: "#dbeafe",
+                        backgroundColor: "#374151",
                         borderRadius: "6px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                       }}
                     >
-                      🛤️
+                      <span style={{ color: "#3b82f6", fontSize: "12px" }}>{">"}</span>
                     </div>
                     <h3
                       style={{
@@ -944,23 +944,34 @@ export default function Dashboard() {
                   </div>
                   <div
                     style={{
-                      backgroundColor: "#f8fafc",
-                      border: "1px solid #e2e8f0",
-                      borderLeft: "4px solid #3b82f6",
-                      borderRadius: "0 8px 8px 0",
+                      backgroundColor: "#000000",
+                      border: "2px solid #374151",
+                      borderRadius: "8px",
                       padding: "1.5rem",
+                      fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                      fontSize: "14px",
+                      color: "#e5e7eb",
+                      position: "relative",
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
                     }}
                   >
-                    <p
+                    <div
                       style={{
-                        fontSize: "14px",
-                        lineHeight: "1.6",
-                        color: "#374151",
-                        margin: 0,
+                        position: "absolute",
+                        top: "8px",
+                        left: "12px",
+                        display: "flex",
+                        gap: "6px"
                       }}
                     >
-                      {analysisResults.analysis.execution_path}
-                    </p>
+                      <div style={{ width: "12px", height: "12px", backgroundColor: "#ef4444", borderRadius: "50%" }}></div>
+                      <div style={{ width: "12px", height: "12px", backgroundColor: "#f59e0b", borderRadius: "50%" }}></div>
+                      <div style={{ width: "12px", height: "12px", backgroundColor: "#10b981", borderRadius: "50%" }}></div>
+                    </div>
+                    <div style={{ marginTop: "24px", letterSpacing: "0.5px", lineHeight: "1.6" }}>
+                      <span style={{ color: "#6b7280" }}>trace:</span>{" "}
+                      <span style={{ color: "#60a5fa" }}>{analysisResults.analysis.execution_path}</span>
+                    </div>
                   </div>
                 </div>
 
