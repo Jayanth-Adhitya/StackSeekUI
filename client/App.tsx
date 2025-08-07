@@ -229,6 +229,191 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-in fade-in slide-in-from-bottom-2 duration-700">
+              Choose Your Plan
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-1 duration-700 delay-200">
+              Start for free and scale as your team grows. All plans include our core error analysis features.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Starter Plan */}
+            <Card className="relative transition-all duration-300 hover:shadow-lg hover:scale-105 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-300">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold mb-2">Starter</h3>
+                  <p className="text-muted-foreground mb-4">Perfect for individual developers</p>
+                  <div className="mb-4">
+                    <span className="text-4xl font-bold">$0</span>
+                    <span className="text-muted-foreground">/month</span>
+                  </div>
+                </div>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Up to 3 repositories</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">50 error analyses/month</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Basic AI insights</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Email support</span>
+                  </li>
+                </ul>
+                <Button
+                  onClick={handleGetStarted}
+                  className="w-full transition-all duration-200 hover:scale-105"
+                  variant="outline"
+                >
+                  Get Started Free
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Professional Plan */}
+            <Card className="relative transition-all duration-300 hover:shadow-lg hover:scale-105 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-400 border-primary">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-primary text-primary-foreground px-4 py-1">
+                  Most Popular
+                </Badge>
+              </div>
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold mb-2">Professional</h3>
+                  <p className="text-muted-foreground mb-4">For growing development teams</p>
+                  <div className="mb-4">
+                    <span className="text-4xl font-bold">$29</span>
+                    <span className="text-muted-foreground">/month</span>
+                  </div>
+                </div>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Up to 15 repositories</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">500 error analyses/month</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Advanced AI insights</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Priority support</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Team collaboration</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Custom integrations</span>
+                  </li>
+                </ul>
+                <Button
+                  onClick={handleGetStarted}
+                  className="w-full transition-all duration-200 hover:scale-105"
+                >
+                  Start Professional
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Enterprise Plan */}
+            <Card className="relative transition-all duration-300 hover:shadow-lg hover:scale-105 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-500">
+              <CardContent className="p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold mb-2">Enterprise</h3>
+                  <p className="text-muted-foreground mb-4">For large organizations</p>
+                  <div className="mb-4">
+                    <span className="text-4xl font-bold">$99</span>
+                    <span className="text-muted-foreground">/month</span>
+                  </div>
+                </div>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Unlimited repositories</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Unlimited analyses</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Enterprise AI features</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">24/7 dedicated support</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">Advanced analytics</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
+                      <span className="text-success text-xs">✓</span>
+                    </div>
+                    <span className="text-sm">SSO & compliance</span>
+                  </li>
+                </ul>
+                <Button
+                  onClick={handleGetStarted}
+                  className="w-full transition-all duration-200 hover:scale-105"
+                  variant="outline"
+                >
+                  Contact Sales
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-primary to-purple-600 text-primary-foreground py-20">
         <div className="container mx-auto px-8 text-center">
