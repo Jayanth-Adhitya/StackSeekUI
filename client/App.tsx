@@ -162,43 +162,19 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </section>
 
       {/* Features Grid */}
-      <section
-        style={{
-          backgroundColor: "#f9fafb",
-          padding: "5rem 2rem",
-        }}
-      >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-            <h2
-              style={{
-                fontSize: "clamp(2rem, 4vw, 2.5rem)",
-                fontWeight: "bold",
-                marginBottom: "1rem",
-              }}
-            >
+      <section className="bg-muted/50 py-20 transition-colors duration-300">
+        <div className="container mx-auto px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-in fade-in slide-in-from-bottom-2 duration-700">
               Everything you need for error analysis
             </h2>
-            <p
-              style={{
-                fontSize: "18px",
-                color: "#6b7280",
-                maxWidth: "512px",
-                margin: "0 auto",
-              }}
-            >
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-1 duration-700 delay-200">
               Comprehensive tools and integrations to streamline your error
               debugging workflow
             </p>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "1.5rem",
-            }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 icon: "🔗",
@@ -231,50 +207,23 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
                 desc: "Built on modern architecture with .NET backend for maximum performance and reliability.",
               },
             ].map((feature, index) => (
-              <div
+              <Card
                 key={index}
-                style={{
-                  border: "1px solid #e5e5e5",
-                  backgroundColor: "rgba(255, 255, 255, 0.5)",
-                  borderRadius: "8px",
-                  padding: "1.5rem",
-                  boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                  transition: "box-shadow 0.3s ease",
-                }}
+                className="transition-all duration-300 hover:shadow-lg hover:scale-105 hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-2 duration-700"
+                style={{ animationDelay: `${index * 100 + 400}ms` }}
               >
-                <div
-                  style={{
-                    width: "48px",
-                    height: "48px",
-                    backgroundColor: "rgba(139, 92, 246, 0.1)",
-                    borderRadius: "8px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "1rem",
-                    fontSize: "24px",
-                  }}
-                >
-                  {feature.icon}
-                </div>
-                <h3
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "600",
-                    marginBottom: "8px",
-                  }}
-                >
-                  {feature.title}
-                </h3>
-                <p
-                  style={{
-                    color: "#6b7280",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  {feature.desc}
-                </p>
-              </div>
+                <CardContent className="p-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-4 text-2xl transition-transform duration-300 hover:scale-110">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {feature.desc}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
