@@ -278,13 +278,13 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-16 sm:py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
+      <section id="pricing" className="py-16 sm:py-24 px-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900/50 dark:to-gray-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6 px-2">
               Simple, Transparent Pricing
             </h2>
-            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed px-4">
+            <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed px-4">
               Start free, upgrade when you need more
             </p>
           </div>
