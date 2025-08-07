@@ -856,14 +856,14 @@ export default function Dashboard() {
                       style={{
                         width: "24px",
                         height: "24px",
-                        backgroundColor: "#fef3c7",
+                        backgroundColor: "#374151",
                         borderRadius: "6px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                       }}
                     >
-                      📍
+                      <span style={{ color: "#22c55e", fontSize: "12px" }}>$</span>
                     </div>
                     <h3
                       style={{
@@ -878,16 +878,33 @@ export default function Dashboard() {
                   </div>
                   <div
                     style={{
-                      backgroundColor: "#fffbeb",
-                      border: "1px solid #fbbf24",
+                      backgroundColor: "#000000",
+                      border: "2px solid #374151",
                       borderRadius: "8px",
-                      padding: "1rem",
-                      fontFamily: 'Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-                      fontSize: "13px",
-                      color: "#92400e"
+                      padding: "1.5rem",
+                      fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                      fontSize: "14px",
+                      color: "#22c55e",
+                      position: "relative",
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
                     }}
                   >
-                    {analysisResults.analysis.error_location}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "8px",
+                        left: "12px",
+                        display: "flex",
+                        gap: "6px"
+                      }}
+                    >
+                      <div style={{ width: "12px", height: "12px", backgroundColor: "#ef4444", borderRadius: "50%" }}></div>
+                      <div style={{ width: "12px", height: "12px", backgroundColor: "#f59e0b", borderRadius: "50%" }}></div>
+                      <div style={{ width: "12px", height: "12px", backgroundColor: "#10b981", borderRadius: "50%" }}></div>
+                    </div>
+                    <div style={{ marginTop: "24px", letterSpacing: "0.5px", lineHeight: "1.6" }}>
+                      <span style={{ color: "#6b7280" }}>location:</span> <span style={{ color: "#f97316" }}>{analysisResults.analysis.error_location}</span>
+                    </div>
                   </div>
                 </div>
 
