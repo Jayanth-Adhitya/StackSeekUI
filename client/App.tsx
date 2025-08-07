@@ -4,6 +4,10 @@ import Register from "@/pages/Register";
 import Dashboard from "@/pages/DashboardNew";
 import ConnectRepository from "@/pages/ConnectRepository";
 import ForgotPassword from "@/pages/ForgotPassword";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   const handleSignIn = () => {
