@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { UserProfile } from "@/components/user-profile"
 
 export default function ConnectRepository() {
   const [selectedProvider, setSelectedProvider] = useState<string | null>(null)
