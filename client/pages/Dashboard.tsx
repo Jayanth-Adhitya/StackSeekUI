@@ -728,10 +728,8 @@ export default function Dashboard() {
                       borderRadius: "6px 6px 0 0"
                     }}
                   >
-                    <div style={{ display: "flex", gap: "6px" }}>
-                      <div style={{ width: "12px", height: "12px", backgroundColor: "#ef4444", borderRadius: "50%" }}></div>
-                      <div style={{ width: "12px", height: "12px", backgroundColor: "#f59e0b", borderRadius: "50%" }}></div>
-                      <div style={{ width: "12px", height: "12px", backgroundColor: "#10b981", borderRadius: "50%" }}></div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <span style={{ color: "#8b949e", fontSize: "14px" }}>$</span>
                     </div>
                     <span style={{ color: "#8b949e", fontSize: "12px", fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>
                       main.js
