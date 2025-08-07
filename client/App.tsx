@@ -1,15 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "wouter";
 import Login from "@/pages/LoginNew";
 import Register from "@/pages/RegisterNew";
 import Dashboard from "@/pages/DashboardNew";
 import ConnectRepository from "@/pages/ConnectRepositoryNew";
 import ForgotPassword from "@/pages/ForgotPasswordNew";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { 
+  Sparkles, 
+  Zap, 
+  Shield, 
+  Code2, 
+  GitBranch, 
+  LineChart,
+  CheckCircle,
+  Check,
+  ArrowRight,
+  Globe,
+  Users,
+  Gauge,
+  Phone,
+  MessageCircle,
+  Menu,
+  X
+} from "lucide-react";
 
 function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setMobileMenuOpen(false); // Close mobile menu if open
+    }
+  };
+
   const handleSignIn = () => {
     onNavigate("login");
   };
@@ -17,210 +45,189 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   const handleGetStarted = () => {
     onNavigate("register");
   };
+  
+  // Force light theme on landing page
+  useEffect(() => {
+    document.documentElement.classList.remove('dark');
+    return () => {
+      // Restore theme on unmount
+      const savedTheme = localStorage.getItem('deepnexus-theme');
+      if (savedTheme === 'dark' || (savedTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    };
+  }, []);
 
-  const handleStartAnalyzing = () => {
-    onNavigate("register");
-  };
+  const features = [
+    {
+      icon: <Zap className="w-6 h-6" />,
+      title: "AI-Powered Analysis",
+      description: "Advanced AI models analyze your errors and provide intelligent solutions in seconds"
+    },
+    {
+      icon: <Code2 className="w-6 h-6" />,
+      title: "Multi-Language Support",
+      description: "Support for 10+ programming languages including JavaScript, Python, Java, and more"
+    },
+    {
+      icon: <GitBranch className="w-6 h-6" />,
+      title: "Git Integration",
+      description: "Connect your repositories from GitHub, GitLab, Bitbucket, and other providers"
+    },
+    {
+      icon: <Shield className="w-6 h-6" />,
+      title: "Enterprise Security",
+      description: "Your code and data are encrypted and never stored permanently"
+    },
+    {
+      icon: <LineChart className="w-6 h-6" />,
+      title: "Error Analytics",
+      description: "Track error patterns and get insights to prevent future issues"
+    },
+    {
+      icon: <Users className="w-6 h-6" />,
+      title: "Team Collaboration",
+      description: "Share solutions and collaborate with your team members"
+    }
+  ];
 
-  // Navigation test helper
-  const [showTestNav, setShowTestNav] = useState(false);
+  const stats = [
+    { value: "50K+", label: "Errors Analyzed" },
+    { value: "10K+", label: "Active Developers" },
+    { value: "99.9%", label: "Uptime" },
+    { value: "< 3s", label: "Analysis Time" }
+  ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      {/* Navigation Test Panel */}
-      {showTestNav && (
-        <Card className="fixed top-4 right-4 z-50 min-w-48 animate-in slide-in-from-top-2 duration-200">
-          <CardContent className="p-4 space-y-2">
-            <h4 className="text-sm font-medium mb-3">🧪 Test Navigation</h4>
-            <div className="space-y-2">
-              <Button onClick={() => onNavigate("login")} size="sm" className="w-full justify-start" variant="outline">
-                Login Page
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50/30 to-teal-50/30">
+      {/* Navigation */}
+      <nav className="bg-white/60 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200/50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3 animate-fade-in">
+              <div className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-blue-700 to-blue-500 rounded-xl shadow-xl transform hover:scale-105 transition-transform">
+                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              </div>
+              <h1 className="text-xl sm:text-2xl font-bold text-blue-700">DeepNexus</h1>
+            </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-4">
+              <a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Features</a>
+              <a href="#how-it-works" onClick={(e) => handleScrollToSection(e, 'how-it-works')} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">How It Works</a>
+              <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Pricing</a>
+              <Button variant="ghost" onClick={handleSignIn} className="font-medium hover:text-blue-600 transition-colors">
+                Sign In
               </Button>
-              <Button onClick={() => onNavigate("register")} size="sm" className="w-full justify-start" variant="outline">
-                Register Page
-              </Button>
-              <Button onClick={() => onNavigate("forgot-password")} size="sm" className="w-full justify-start" variant="outline">
-                Forgot Password
-              </Button>
-              <Button onClick={() => onNavigate("connect-repository")} size="sm" className="w-full justify-start" variant="outline">
-                Connect Repository
-              </Button>
-              <Button onClick={() => onNavigate("dashboard")} size="sm" className="w-full justify-start" variant="outline">
-                Dashboard
-              </Button>
-              <Button onClick={() => onNavigate("home")} size="sm" className="w-full justify-start" variant="outline">
-                Home/Landing
-              </Button>
-              <Button onClick={() => setShowTestNav(false)} size="sm" className="w-full mt-2" variant="secondary">
-                ✕ Close
+              <Button onClick={handleGetStarted} className="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-lg professional-button font-medium px-6">
+                Get Started Free
               </Button>
             </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Header */}
-      <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-colors duration-300">
-        <div className="container flex h-16 items-center justify-between px-8">
-          <div className="flex items-center gap-3">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F3c01044c209e4e76920345f418b746ad%2F933081037c954896b92c871f21dda819?format=webp&width=800"
-              alt="StackSeek Logo"
-              className="h-10 w-auto transition-transform duration-200 hover:scale-105"
-            />
+            
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6 text-gray-700" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-700" />
+              )}
+            </button>
           </div>
-          <div className="flex items-center gap-3">
-            <Button
-              onClick={() => setShowTestNav(!showTestNav)}
-              variant="outline"
-              size="sm"
-              className="transition-all duration-200 hover:scale-105"
-              title="Test Navigation - Click to access all pages"
-            >
-              🧪 Nav
-            </Button>
-            <Button
-              onClick={handleSignIn}
-              variant="ghost"
-              className="transition-all duration-200 hover:scale-105"
-            >
-              Sign In
-            </Button>
-            <Button
-              onClick={handleGetStarted}
-              className="transition-all duration-200 hover:scale-105"
-            >
-              Get Started
-            </Button>
-            <ThemeToggle />
-          </div>
+          
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden py-4 border-t border-gray-200/50 animate-fade-in">
+              <div className="space-y-2">
+                <a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="block px-4 py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium">Features</a>
+                <a href="#how-it-works" onClick={(e) => handleScrollToSection(e, 'how-it-works')} className="block px-4 py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium">How It Works</a>
+                <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="block px-4 py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium">Pricing</a>
+                <div className="pt-2 space-y-2">
+                  <Button variant="ghost" onClick={handleSignIn} className="w-full font-medium hover:text-blue-600 transition-colors">
+                    Sign In
+                  </Button>
+                  <Button onClick={handleGetStarted} className="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-lg professional-button font-medium">
+                    Get Started Free
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </header>
+      </nav>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-8 py-20 text-center">
-        <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
-          <Badge variant="secondary" className="mb-8 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-200">
-            <span className="mr-2">⚡</span>
-            Now with Multi-Provider Integration
-          </Badge>
-
-          <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl animate-in fade-in slide-in-from-bottom-3 duration-1000 delay-300">
-            Error Analysis
-            <br />
-            <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Made Simple
+      <section className="relative pt-16 sm:pt-24 pb-24 sm:pb-36 px-4 animate-fade-in">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-blue-50 text-blue-800 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full mb-6 sm:mb-8 shadow-sm text-xs sm:text-sm">
+            <Gauge className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="font-semibold tracking-wide">Trusted by 10,000+ developers worldwide</span>
+          </div>
+          
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight px-2">
+            Debug Smarter,<br />
+            <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 bg-clip-text text-transparent">
+              Ship Faster
             </span>
           </h1>
-
-          <p className="mx-auto mb-10 max-w-3xl text-lg text-muted-foreground sm:text-xl animate-in fade-in slide-in-from-bottom-2 duration-1000 delay-500">
-            Analyze, track, and resolve errors across your repositories with
-            AI-powered insights. Connect GitHub, GitLab, Bitbucket, and Azure
-            DevOps for intelligent error analysis.
+          
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed px-4">
+            DeepNexus uses cutting-edge AI to analyze your errors, provide instant solutions, 
+            and help you write better code. Stop wasting hours on debugging.
           </p>
-
-          <div className="mb-16 flex flex-wrap items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-1 duration-1000 delay-700">
-            <Button
-              onClick={handleStartAnalyzing}
-              size="lg"
-              className="transition-all duration-200 hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl"
-            >
-              Start Analyzing Errors
-              <span className="ml-2">→</span>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 sm:mb-16 px-4">
+            <Button size="lg" onClick={handleGetStarted} className="w-full sm:w-auto bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-xl professional-button px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-medium">
+              Start Free Trial
+              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
-            <Button
-              onClick={handleSignIn}
-              variant="outline"
-              size="lg"
-              className="transition-all duration-200 hover:scale-105 hover:-translate-y-1"
-            >
-              Sign In
+            <Button size="lg" variant="outline" className="w-full sm:w-auto px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-medium border-2 hover:bg-gray-50">
+              Watch Demo
             </Button>
           </div>
 
-          {/* Demo Dashboard */}
-          <div className="mx-auto max-w-4xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-1000">
-            <Card className="overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-3xl hover:scale-105">
-              <CardContent className="p-0">
-                <div className="aspect-video bg-gradient-to-br from-primary/5 to-purple-500/5 flex items-center justify-center p-8">
-                  <div className="text-center">
-                    <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-4xl transition-transform duration-300 hover:scale-110">
-                      📊
-                    </div>
-                    <h3 className="mb-2 text-lg font-semibold">
-                      Interactive Dashboard
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Real-time error analysis and insights
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 max-w-3xl mx-auto px-4">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-2xl sm:text-3xl font-bold text-gray-900">{stat.value}</div>
+                <div className="text-xs sm:text-sm text-gray-600">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="bg-muted/50 py-20 transition-colors duration-300">
-        <div className="container mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-in fade-in slide-in-from-bottom-2 duration-700">
-              Everything you need for error analysis
+      {/* Features Section */}
+      <section id="features" className="py-16 sm:py-20 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-2">
+              Everything You Need to Debug Efficiently
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-1 duration-700 delay-200">
-              Comprehensive tools and integrations to streamline your error
-              debugging workflow
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed px-4">
+              DeepNexus provides comprehensive error analysis tools powered by advanced AI
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                icon: "🔗",
-                title: "Multi-Provider Integration",
-                desc: "Connect repositories from GitHub, GitLab, Bitbucket, and Azure DevOps with comprehensive authentication.",
-              },
-              {
-                icon: "🤖",
-                title: "AI-Powered Analysis",
-                desc: "Advanced error pattern recognition with intelligent suggestions for quick resolution and debugging.",
-              },
-              {
-                icon: "🛡️",
-                title: "Enterprise Security",
-                desc: "Bank-grade security with encrypted credential storage and secure authentication protocols.",
-              },
-              {
-                icon: "📊",
-                title: "Real-time Dashboard",
-                desc: "Monitor error trends, track resolution progress, and visualize repository health metrics.",
-              },
-              {
-                icon: "🔑",
-                title: "Flexible Authentication",
-                desc: "Support for tokens, SSH keys, deploy keys, and OAuth for seamless repository access.",
-              },
-              {
-                icon: "⚡",
-                title: "Lightning Fast",
-                desc: "Built on modern architecture with .NET backend for maximum performance and reliability.",
-              },
-            ].map((feature, index) => (
-              <Card
-                key={index}
-                className="transition-all duration-300 hover:shadow-lg hover:scale-105 hover:-translate-y-1 animate-in fade-in slide-in-from-bottom-2 duration-700"
-                style={{ animationDelay: `${index * 100 + 400}ms` }}
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {features.map((feature, index) => (
+              <Card 
+                key={index} 
+                className="hover:shadow-2xl transition-all duration-300 border-gray-100 hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <CardContent className="p-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-4 text-2xl transition-transform duration-300 hover:scale-110">
+                <CardContent className="p-6 sm:p-8">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mb-4 sm:mb-6 text-blue-600 shadow-sm">
                     {feature.icon}
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2 sm:mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {feature.desc}
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    {feature.description}
                   </p>
                 </CardContent>
               </Card>
@@ -229,380 +236,262 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 animate-in fade-in slide-in-from-bottom-2 duration-700">
-              Choose Your Plan
+      {/* How It Works */}
+      <section id="how-it-works" className="py-16 sm:py-24 px-4 bg-gradient-to-b from-white to-gray-50/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
+              How DeepNexus Works
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-1 duration-700 delay-200">
-              Start for free and scale as your team grows. All plans include our core error analysis features.
+            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed px-4">
+              Get from error to solution in three simple steps
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Starter Plan */}
-            <Card className="relative transition-all duration-300 hover:shadow-lg hover:scale-105 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-300">
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Starter</h3>
-                  <p className="text-muted-foreground mb-4">Perfect for individual developers</p>
-                  <div className="mb-4">
-                    <span className="text-4xl font-bold">$0</span>
-                    <span className="text-muted-foreground">/month</span>
-                  </div>
+          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-xl transform hover:scale-110 transition-transform">
+                1
+              </div>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Paste Your Error</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-4">
+                Copy and paste your error message or stack trace into DeepNexus
+              </p>
+            </div>
+
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-xl transform hover:scale-110 transition-transform">
+                2
+              </div>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">AI Analysis</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-4">
+                Our AI analyzes your error and generates comprehensive solutions
+              </p>
+            </div>
+
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-xl transform hover:scale-110 transition-transform">
+                3
+              </div>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Apply Solutions</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-4">
+                Get step-by-step fixes and code suggestions to resolve your issue
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-16 sm:py-24 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed px-4">
+              Start free, upgrade when you need more
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            {/* Free Plan */}
+            <Card className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 bg-white/80 backdrop-blur-sm animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Free</h3>
+                <div className="mb-4 sm:mb-6">
+                  <span className="text-3xl sm:text-4xl font-bold">$0</span>
+                  <span className="text-gray-600 text-base sm:text-lg">/month</span>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Up to 3 repositories</span>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>50 error analyses/month</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">50 error analyses/month</span>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>Basic AI suggestions</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Basic AI insights</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Email support</span>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>Public repositories</span>
                   </li>
                 </ul>
-                <Button
-                  onClick={handleGetStarted}
-                  className="w-full transition-all duration-200 hover:scale-105"
-                  variant="outline"
-                >
-                  Get Started Free
-                </Button>
+                <Button variant="outline" onClick={handleGetStarted} className="w-full">Get Started</Button>
               </CardContent>
             </Card>
 
-            {/* Professional Plan */}
-            <Card className="relative transition-all duration-300 hover:shadow-lg hover:scale-105 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-400 border-primary">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-primary text-primary-foreground px-4 py-1">
-                  Most Popular
-                </Badge>
+            {/* Pro Plan */}
+            <Card className="relative border-blue-200 shadow-2xl hover:shadow-3xl transition-all duration-300 bg-white sm:scale-105 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-700 to-blue-500 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
+                Most Popular
               </div>
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Professional</h3>
-                  <p className="text-muted-foreground mb-4">For growing development teams</p>
-                  <div className="mb-4">
-                    <span className="text-4xl font-bold">$29</span>
-                    <span className="text-muted-foreground">/month</span>
-                  </div>
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Pro</h3>
+                <div className="mb-4 sm:mb-6">
+                  <span className="text-3xl sm:text-4xl font-bold">$19</span>
+                  <span className="text-gray-600 text-base sm:text-lg">/month</span>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Up to 15 repositories</span>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>Unlimited error analyses</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">500 error analyses/month</span>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>Advanced AI with GPT-4</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Advanced AI insights</span>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>Private repositories</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Priority support</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Team collaboration</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Custom integrations</span>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>Priority support</span>
                   </li>
                 </ul>
-                <Button
-                  onClick={handleGetStarted}
-                  className="w-full transition-all duration-200 hover:scale-105"
-                >
-                  Start Professional
+                <Button onClick={handleGetStarted} className="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600">
+                  Start Free Trial
                 </Button>
               </CardContent>
             </Card>
 
             {/* Enterprise Plan */}
-            <Card className="relative transition-all duration-300 hover:shadow-lg hover:scale-105 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-500">
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Enterprise</h3>
-                  <p className="text-muted-foreground mb-4">For large organizations</p>
-                  <div className="mb-4">
-                    <span className="text-4xl font-bold">$99</span>
-                    <span className="text-muted-foreground">/month</span>
-                  </div>
+            <Card className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 bg-white/80 backdrop-blur-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Enterprise</h3>
+                <div className="mb-4 sm:mb-6">
+                  <span className="text-3xl sm:text-4xl font-bold">Custom</span>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Unlimited repositories</span>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>Everything in Pro</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Unlimited analyses</span>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>On-premise deployment</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Enterprise AI features</span>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>Custom AI models</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">24/7 dedicated support</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">Advanced analytics</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-success/20 flex items-center justify-center">
-                      <span className="text-success text-xs">✓</span>
-                    </div>
-                    <span className="text-sm">SSO & compliance</span>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>SLA & dedicated support</span>
                   </li>
                 </ul>
-                <Button
-                  onClick={handleGetStarted}
-                  className="w-full transition-all duration-200 hover:scale-105"
-                  variant="outline"
-                >
-                  Contact Sales
-                </Button>
+                <div className="grid grid-cols-2 gap-2 mt-4">
+                  <a 
+                    href="https://wa.me/919629193423?text=Hi%2C%20I'm%20interested%20in%20DeepNexus%20Enterprise%20plan" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" className="w-full h-10">
+                      <MessageCircle className="w-4 h-4 mr-2 flex-shrink-0" />
+                      <span>WhatsApp</span>
+                    </Button>
+                  </a>
+                  <a 
+                    href="tel:+919629193423"
+                  >
+                    <Button variant="outline" className="w-full h-10">
+                      <Phone className="w-4 h-4 mr-2 flex-shrink-0" />
+                      <span>Call Now</span>
+                    </Button>
+                  </a>
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-primary to-purple-600 text-primary-foreground py-20">
-        <div className="container mx-auto px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 tracking-tight animate-in fade-in slide-in-from-bottom-2 duration-700">
-            Ready to streamline your error analysis?
-          </h2>
-          <p className="text-lg sm:text-xl mb-10 opacity-90 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-1 duration-700 delay-200">
-            Join thousands of developers who are already saving hours every week
-            with intelligent error insights
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-1 duration-700 delay-400">
-            <Button
-              onClick={handleGetStarted}
-              size="lg"
-              variant="secondary"
-              className="transition-all duration-200 hover:scale-105 hover:-translate-y-1 shadow-lg"
-            >
-              Get Started for Free
-              <span className="ml-2">→</span>
-            </Button>
-            <Button
-              onClick={handleSignIn}
-              size="lg"
-              variant="outline"
-              className="border-primary-foreground/20 bg-primary-foreground/10 text-primary-foreground transition-all duration-200 hover:scale-105 hover:-translate-y-1 hover:bg-primary-foreground/20"
-            >
-              Sign In
-            </Button>
+      {/* Stats Section */}
+      <section className="py-12 sm:py-20 px-4 bg-gradient-to-r from-blue-700 to-blue-500">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
+            {stats.map((stat, index) => (
+              <div 
+                key={index} 
+                className="animate-fade-in transform hover:scale-110 transition-transform"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3">{stat.value}</div>
+                <div className="text-white/80 text-sm sm:text-base lg:text-lg font-medium">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* CTA Section */}
+      <section className="py-16 sm:py-32 px-4 bg-gradient-to-br from-blue-50 via-white to-blue-50">
+        <div className="max-w-4xl mx-auto text-center animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
+            Ready to Debug Smarter?
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-700 mb-8 sm:mb-10 leading-relaxed px-4">
+            Join thousands of developers who are already saving hours on debugging
+          </p>
+          <Button size="lg" onClick={handleGetStarted} className="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-xl professional-button px-8 sm:px-12 py-5 sm:py-7 text-base sm:text-lg font-medium">
+            Start Your Free Trial
+            <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+          </Button>
+          <p className="text-sm sm:text-base text-gray-600 mt-4 sm:mt-6 font-medium px-4">
+            No credit card required • Free forever for personal use
+          </p>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="border-t bg-muted/50 py-16 transition-colors duration-300">
-        <div className="container mx-auto px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
-            {/* Brand Section */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-3 mb-4">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F3c01044c209e4e76920345f418b746ad%2F933081037c954896b92c871f21dda819?format=webp&width=800"
-                  alt="StackSeek Logo"
-                  className="h-8 w-auto transition-transform duration-200 hover:scale-105"
-                />
-                <span className="text-xl font-semibold">StackSeek</span>
+      <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-12 sm:py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">
+            <div className="col-span-1 sm:col-span-2 md:col-span-1">
+              <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-700 to-blue-500 rounded-xl shadow-lg">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold">DeepNexus</h3>
               </div>
-              <p className="text-muted-foreground mb-6 max-w-md">
-                Transform errors into insights with AI-powered analysis.
-                Streamline your debugging workflow and ship with confidence.
+              <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
+                AI-powered error analysis for modern developers. Debug smarter, ship faster.
               </p>
-              <div className="flex gap-4">
-                <Button variant="ghost" size="icon" className="hover:bg-primary/10">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
-                  </svg>
-                </Button>
-                <Button variant="ghost" size="icon" className="hover:bg-primary/10">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                  </svg>
-                </Button>
-                <Button variant="ghost" size="icon" className="hover:bg-primary/10">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                  </svg>
-                </Button>
-                <Button variant="ghost" size="icon" className="hover:bg-primary/10">
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z" clipRule="evenodd" />
-                  </svg>
-                </Button>
-              </div>
             </div>
 
-            {/* Product Links */}
             <div>
-              <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Features
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Pricing
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Integrations
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    API Documentation
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Status Page
-                  </Button>
-                </li>
+              <h4 className="font-semibold mb-4 sm:mb-6 text-base sm:text-lg">Product</h4>
+              <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
+                <li><a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="hover:text-white transition-colors">Features</a></li>
+                <li><a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="hover:text-white transition-colors">Pricing</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">API</a></li>
               </ul>
             </div>
 
-            {/* Company Links */}
             <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    About Us
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Careers
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Blog
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Press Kit
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Contact Us
-                  </Button>
-                </li>
+              <h4 className="font-semibold mb-4 sm:mb-6 text-base sm:text-lg">Company</h4>
+              <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
+                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
               </ul>
             </div>
 
-            {/* Support Links */}
             <div>
-              <h3 className="font-semibold mb-4">Support</h3>
-              <ul className="space-y-3 text-sm">
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Help Center
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Community
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Security
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Privacy Policy
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                    Terms of Service
-                  </Button>
-                </li>
+              <h4 className="font-semibold mb-4 sm:mb-6 text-base sm:text-lg">Legal</h4>
+              <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
+                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
               </ul>
             </div>
           </div>
 
-          {/* Bottom Section */}
-          <div className="pt-8 border-t border-border">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-sm text-muted-foreground">
-                © 2024 StackSeek. Built with modern technologies for modern developers.
-              </p>
-              <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                  Privacy
-                </Button>
-                <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                  Terms
-                </Button>
-                <Button variant="link" className="h-auto p-0 text-muted-foreground hover:text-foreground">
-                  Cookies
-                </Button>
-              </div>
-            </div>
+          <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-gray-400 text-sm sm:text-base">
+            <p>&copy; 2025 DeepNexus. All rights reserved.</p>
           </div>
         </div>
       </footer>
