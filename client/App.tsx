@@ -352,34 +352,34 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
             </Card>
 
             {/* Enterprise Plan */}
-            <Card className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 bg-white/80 backdrop-blur-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <Card className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <CardContent className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Enterprise</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Enterprise</h3>
                 <div className="mb-4 sm:mb-6">
-                  <span className="text-3xl sm:text-4xl font-bold">Custom</span>
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">Custom</span>
                 </div>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>Everything in Pro</span>
+                    <span className="text-gray-700 dark:text-gray-300">Everything in Pro</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>On-premise deployment</span>
+                    <span className="text-gray-700 dark:text-gray-300">On-premise deployment</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>Custom AI models</span>
+                    <span className="text-gray-700 dark:text-gray-300">Custom AI models</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>SLA & dedicated support</span>
+                    <span className="text-gray-700 dark:text-gray-300">SLA & dedicated support</span>
                   </li>
                 </ul>
                 <div className="grid grid-cols-2 gap-2 mt-4">
-                  <a 
-                    href="https://wa.me/919629193423?text=Hi%2C%20I'm%20interested%20in%20DeepNexus%20Enterprise%20plan" 
-                    target="_blank" 
+                  <a
+                    href="https://wa.me/919629193423?text=Hi%2C%20I'm%20interested%20in%20StackSeek%20Enterprise%20plan"
+                    target="_blank"
                     rel="noopener noreferrer"
                   >
                     <Button variant="outline" className="w-full h-10">
@@ -387,7 +387,7 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
                       <span>WhatsApp</span>
                     </Button>
                   </a>
-                  <a 
+                  <a
                     href="tel:+919629193423"
                   >
                     <Button variant="outline" className="w-full h-10">
