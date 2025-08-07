@@ -134,13 +134,13 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
           
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-200/50 animate-fade-in">
+            <div className="md:hidden py-4 border-t border-gray-200/50 dark:border-gray-700/50 animate-fade-in">
               <div className="space-y-2">
-                <a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="block px-4 py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium">Features</a>
-                <a href="#how-it-works" onClick={(e) => handleScrollToSection(e, 'how-it-works')} className="block px-4 py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium">How It Works</a>
-                <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="block px-4 py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium">Pricing</a>
+                <a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Features</a>
+                <a href="#how-it-works" onClick={(e) => handleScrollToSection(e, 'how-it-works')} className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">How It Works</a>
+                <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Pricing</a>
                 <div className="pt-2 space-y-2">
-                  <Button variant="ghost" onClick={handleSignIn} className="w-full font-medium hover:text-blue-600 transition-colors">
+                  <Button variant="ghost" onClick={handleSignIn} className="w-full font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                     Sign In
                   </Button>
                   <Button onClick={handleGetStarted} className="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-lg professional-button font-medium">
