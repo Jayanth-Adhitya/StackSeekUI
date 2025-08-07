@@ -50,13 +50,6 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false)
   const [analysisResults, setAnalysisResults] = useState(null)
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn")
-    localStorage.removeItem("userEmail")
-    window.location.href = "/"
-  }
-
-  const userEmail = localStorage.getItem("userEmail") || "user@example.com"
 
   // Mock repositories for demo
   const repositories = [
