@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Login from "@/pages/Login";
+import Login from "@/pages/LoginNew";
 import Register from "@/pages/Register";
 import Dashboard from "@/pages/DashboardNew";
-import ConnectRepository from "@/pages/ConnectRepository";
-import ForgotPassword from "@/pages/ForgotPassword";
+import ConnectRepository from "@/pages/ConnectRepositoryNew";
+import ForgotPassword from "@/pages/ForgotPasswordNew";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
