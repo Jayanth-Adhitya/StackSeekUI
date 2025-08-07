@@ -221,7 +221,10 @@ export default function Dashboard() {
                 Transform errors into insights with AI-powered analysis
               </p>
             </div>
-            <ThemeToggle />
+            <div className="flex items-center gap-2">
+              <UserProfile />
+              <ThemeToggle />
+            </div>
           </header>
 
           {/* Main Content */}
