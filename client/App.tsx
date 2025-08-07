@@ -445,10 +445,12 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">
             <div className="col-span-1 sm:col-span-2 md:col-span-1">
               <div className="flex items-center space-x-3 mb-4 sm:mb-6">
-                <div className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-700 to-blue-500 rounded-xl shadow-lg">
-                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold">DeepNexus</h3>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F3c01044c209e4e76920345f418b746ad%2F933081037c954896b92c871f21dda819?format=webp&width=800"
+                  alt="StackSeek Logo"
+                  className="h-10 w-auto transition-transform duration-200 hover:scale-105"
+                />
+                <h3 className="text-xl sm:text-2xl font-bold">StackSeek</h3>
               </div>
               <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
                 AI-powered error analysis for modern developers. Debug smarter, ship faster.
