@@ -187,14 +187,90 @@ export default function ConnectRepository() {
             ))}
           </div>
 
+          {/* Manual Upload Section */}
+          <div className="max-w-2xl mx-auto mt-12 animate-in fade-in slide-in-from-bottom-1 duration-1000 delay-600">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-semibold mb-2">Or upload manually</h3>
+              <p className="text-sm text-muted-foreground">
+                For custom Git servers or specific repository configurations
+              </p>
+            </div>
+
+            <Card className="transition-all duration-300 hover:shadow-lg">
+              <CardContent className="p-6">
+                <form onSubmit={handlePrivateRepoConnect} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="manual-repo-url">Git Repository URL</Label>
+                    <Input
+                      id="manual-repo-url"
+                      type="url"
+                      placeholder="https://github.com/username/repository.git"
+                      value={repoUrl}
+                      onChange={(e) => setRepoUrl(e.target.value)}
+                      className="transition-all duration-200 hover:border-primary/50 focus:border-primary"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="manual-access-token">
+                      Personal Access Token
+                      <Badge variant="secondary" className="ml-2 text-xs">
+                        Required for private repos
+                      </Badge>
+                    </Label>
+                    <Input
+                      id="manual-access-token"
+                      type="password"
+                      placeholder="Enter your personal access token"
+                      value={accessToken}
+                      onChange={(e) => setAccessToken(e.target.value)}
+                      className="transition-all duration-200 hover:border-primary/50 focus:border-primary"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Create a personal access token with 'repo' scope from your Git provider
+                    </p>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={isConnecting || !repoUrl}
+                    className="w-full transition-all duration-200 hover:scale-105"
+                    variant="outline"
+                  >
+                    {isConnecting ? (
+                      <>
+                        <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                        Connecting...
+                      </>
+                    ) : (
+                      <>
+                        <Key className="mr-2 h-4 w-4" />
+                        Connect Repository Manually
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+
           <div className="text-center mt-8 animate-in fade-in slide-in-from-bottom-1 duration-1000 delay-700">
-            <Alert className="max-w-2xl mx-auto">
+            <Alert className="max-w-2xl mx-auto mb-6">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>
-                Your repository credentials are encrypted and stored securely. 
+                Your repository credentials are encrypted and stored securely.
                 We only access the minimum permissions needed for error analysis.
               </AlertDescription>
             </Alert>
+
+            {/* Skip Button moved to bottom center */}
+            <Button
+              onClick={handleSkip}
+              variant="ghost"
+              className="transition-all duration-200 hover:scale-105"
+            >
+              Skip for now
+            </Button>
           </div>
         </main>
       </div>
