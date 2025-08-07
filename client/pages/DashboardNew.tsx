@@ -51,45 +51,39 @@ export default function Dashboard() {
   const [analysisResults, setAnalysisResults] = useState(null)
 
 
-  // Mock repositories for demo
-  const repositories = [
-    {
-      id: "stackseek-frontend",
-      name: "StackSeek Frontend",
-      owner: "YourOrg",
-      branch: "main",
-      language: "TypeScript",
-      stars: 12,
-      updated: "2 hours ago",
-    },
-    {
-      id: "api-backend",
-      name: "API Backend",
-      owner: "YourOrg",
-      branch: "develop",
-      language: "Python",
-      stars: 8,
-      updated: "1 day ago",
-    },
-    {
-      id: "mobile-app",
-      name: "Mobile App",
-      owner: "YourOrg",
-      branch: "main",
-      language: "React Native",
-      stars: 5,
-      updated: "3 days ago",
-    },
-    {
-      id: "data-pipeline",
-      name: "Data Pipeline",
-      owner: "YourOrg",
-      branch: "main",
-      language: "Go",
-      stars: 3,
-      updated: "1 week ago",
-    },
-  ]
+  // Load repositories from backend API
+  const [repositories, setRepositories] = useState([])
+  const [isLoadingRepositories, setIsLoadingRepositories] = useState(true)
+
+  // Fetch repositories on component mount
+  useEffect(() => {
+    const fetchRepositories = async () => {
+      try {
+        setIsLoadingRepositories(true)
+        const response = await fetch('/api/repositories', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+            'Content-Type': 'application/json'
+          }
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          setRepositories(data.repositories || [])
+        } else {
+          console.error('Failed to fetch repositories:', response.status)
+          setRepositories([])
+        }
+      } catch (error) {
+        console.error('Error fetching repositories:', error)
+        setRepositories([])
+      } finally {
+        setIsLoadingRepositories(false)
+      }
+    }
+
+    fetchRepositories()
+  }, [])
 
   const handleAnalyzeError = async () => {
     if (!selectedRepo) {
