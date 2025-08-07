@@ -313,7 +313,10 @@ export default function ConnectRepository() {
           >
             Skip for now
           </Button>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <UserProfile />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
