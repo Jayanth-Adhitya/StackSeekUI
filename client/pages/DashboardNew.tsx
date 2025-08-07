@@ -208,27 +208,6 @@ export default function Dashboard() {
             </SidebarMenu>
           </SidebarContent>
 
-          <SidebarFooter className="p-4 border-t">
-            <div className="flex items-center gap-3 mb-3 group-data-[collapsible=icon]:hidden">
-              <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-primary text-primary-foreground">
-                  {userEmail.charAt(0).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate">{userEmail}</p>
-              </div>
-            </div>
-            <Button
-              onClick={handleLogout}
-              variant="destructive"
-              size="sm"
-              className="w-full transition-all duration-200 hover:scale-105"
-            >
-              <LogOut className="h-4 w-4 group-data-[collapsible=icon]:mr-0 mr-2" />
-              <span className="group-data-[collapsible=icon]:hidden">Logout</span>
-            </Button>
-          </SidebarFooter>
         </Sidebar>
 
         <SidebarInset className="flex-1">
