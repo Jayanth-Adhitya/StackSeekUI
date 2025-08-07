@@ -10,8 +10,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function UserProfile() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"
   const userEmail = localStorage.getItem("userEmail") || "user@example.com"
   const userName = localStorage.getItem("userName") || userEmail
+
+  // Don't render if user is not logged in
+  if (!isLoggedIn) {
+    return null
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn")
