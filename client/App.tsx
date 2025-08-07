@@ -232,13 +232,13 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-16 sm:py-24 px-4 bg-gradient-to-b from-white to-gray-50/50">
+      <section id="how-it-works" className="py-16 sm:py-24 px-4 bg-gradient-to-b from-white to-gray-50/50 dark:from-gray-900 dark:to-gray-900/50 transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
-              How DeepNexus Works
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6 px-2">
+              How StackSeek Works
             </h2>
-            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed px-4">
+            <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed px-4">
               Get from error to solution in three simple steps
             </p>
           </div>
@@ -248,9 +248,9 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-xl transform hover:scale-110 transition-transform">
                 1
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Paste Your Error</h3>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-4">
-                Copy and paste your error message or stack trace into DeepNexus
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Paste Your Error</h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed px-4">
+                Copy and paste your error message or stack trace into StackSeek
               </p>
             </div>
 
@@ -258,8 +258,8 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-xl transform hover:scale-110 transition-transform">
                 2
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">AI Analysis</h3>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-4">
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">AI Analysis</h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed px-4">
                 Our AI analyzes your error and generates comprehensive solutions
               </p>
             </div>
@@ -268,8 +268,8 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-xl transform hover:scale-110 transition-transform">
                 3
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Apply Solutions</h3>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed px-4">
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Apply Solutions</h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed px-4">
                 Get step-by-step fixes and code suggestions to resolve your issue
               </p>
             </div>
