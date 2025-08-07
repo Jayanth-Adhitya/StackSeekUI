@@ -135,7 +135,10 @@ export default function ConnectRepository() {
               <span className="text-lg font-semibold">StackSeek</span>
             </div>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <UserProfile />
+            <ThemeToggle />
+          </div>
         </header>
 
         {/* Main Content */}
