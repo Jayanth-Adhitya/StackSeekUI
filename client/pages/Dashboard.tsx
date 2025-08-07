@@ -75,21 +75,25 @@ export default function Dashboard() {
       // Mock analysis results based on the provided JSON structure
       const mockResults = {
         analysis: {
-          root_cause_analysis: "The application attempts to open a PDF file using `fitz.open()` with a path to a file that does not exist on the file system. This directly triggers a `FileNotFoundError` because the code lacks a `try-except` block to gracefully handle scenarios where the input file is missing.",
-          error_location: "/path/to/your/script.py, line 5 (within `extract_text_from_pdf` function)",
-          execution_path: "The main script (indicated by `<module>`) makes a direct call to `extract_text_from_pdf('nonexistent_file.pdf')`. Inside `extract_text_from_pdf`, the `fitz.open()` function is invoked with this non-existent file path, which then propagates the `FileNotFoundError`.",
+          root_cause_analysis:
+            "The application attempts to open a PDF file using `fitz.open()` with a path to a file that does not exist on the file system. This directly triggers a `FileNotFoundError` because the code lacks a `try-except` block to gracefully handle scenarios where the input file is missing.",
+          error_location:
+            "/path/to/your/script.py, line 5 (within `extract_text_from_pdf` function)",
+          execution_path:
+            "The main script (indicated by `<module>`) makes a direct call to `extract_text_from_pdf('nonexistent_file.pdf')`. Inside `extract_text_from_pdf`, the `fitz.open()` function is invoked with this non-existent file path, which then propagates the `FileNotFoundError`.",
           replication_steps: [
             "Ensure that no file named `nonexistent_file.pdf` exists in the directory where the application's main script is executed.",
-            "Modify the application's main script (e.g., `app.py`) to include a direct call to `extract_text_from_pdf(\"nonexistent_file.pdf\")` at a point in the code that gets executed (e.g., at the global scope, before `app.run()`). The provided stack trace suggests this call was on line 10.",
-            "Run the modified Python script."
+            'Modify the application\'s main script (e.g., `app.py`) to include a direct call to `extract_text_from_pdf("nonexistent_file.pdf")` at a point in the code that gets executed (e.g., at the global scope, before `app.run()`). The provided stack trace suggests this call was on line 10.',
+            "Run the modified Python script.",
           ],
-          suggested_fix: "Implement `try-except FileNotFoundError` blocks around file opening operations (e.g., `fitz.open()`, `DocxDocument()`, `document.LoadFromFile()`) in functions like `extract_text_from_pdf`, `extract_text_from_docx`, and `convert_doc_to_docx`. These blocks should catch the error and either return `None` or raise a more specific, handled exception to allow the calling functions (like `parse_resume_from_file`) to manage the missing file gracefully."
+          suggested_fix:
+            "Implement `try-except FileNotFoundError` blocks around file opening operations (e.g., `fitz.open()`, `DocxDocument()`, `document.LoadFromFile()`) in functions like `extract_text_from_pdf`, `extract_text_from_docx`, and `convert_doc_to_docx`. These blocks should catch the error and either return `None` or raise a more specific, handled exception to allow the calling functions (like `parse_resume_from_file`) to manage the missing file gracefully.",
         },
         metrics: {
           llm_input_tokens: 3386,
           llm_output_tokens: 417,
-          total_llm_tokens: 3803
-        }
+          total_llm_tokens: 3803,
+        },
       };
 
       setAnalysisResults(mockResults);
@@ -434,7 +438,7 @@ export default function Dashboard() {
               display: "flex",
               gap: "2rem",
               alignItems: "flex-start",
-              flexWrap: analysisResults ? "wrap" : "nowrap"
+              flexWrap: analysisResults ? "wrap" : "nowrap",
             }}
           >
             {/* Left Panel - Error Analysis */}
@@ -649,7 +653,7 @@ export default function Dashboard() {
                     border: "2px solid #374151",
                     borderRadius: "8px",
                     position: "relative",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                   }}
                 >
                   {/* Code Editor Header */}
@@ -661,13 +665,22 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      borderRadius: "6px 6px 0 0"
+                      borderRadius: "6px 6px 0 0",
                     }}
                   >
                     <div style={{ display: "flex", alignItems: "center" }}>
-                      <span style={{ color: "#9ca3af", fontSize: "14px" }}>$</span>
+                      <span style={{ color: "#9ca3af", fontSize: "14px" }}>
+                        $
+                      </span>
                     </div>
-                    <span style={{ color: "#9ca3af", fontSize: "12px", fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>
+                    <span
+                      style={{
+                        color: "#9ca3af",
+                        fontSize: "12px",
+                        fontFamily:
+                          '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                      }}
+                    >
                       error.log
                     </span>
                   </div>
@@ -685,10 +698,11 @@ export default function Dashboard() {
                       outline: "none",
                       color: "#ef4444",
                       fontSize: "14px",
-                      fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                      fontFamily:
+                        '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
                       resize: "vertical",
                       letterSpacing: "0.5px",
-                      lineHeight: "1.6"
+                      lineHeight: "1.6",
                     }}
                   />
                 </div>
@@ -713,7 +727,7 @@ export default function Dashboard() {
                     border: "2px solid #374151",
                     borderRadius: "8px",
                     position: "relative",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                   }}
                 >
                   {/* Code Editor Header */}
@@ -725,13 +739,22 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
-                      borderRadius: "6px 6px 0 0"
+                      borderRadius: "6px 6px 0 0",
                     }}
                   >
                     <div style={{ display: "flex", alignItems: "center" }}>
-                      <span style={{ color: "#8b949e", fontSize: "14px" }}>$</span>
+                      <span style={{ color: "#8b949e", fontSize: "14px" }}>
+                        $
+                      </span>
                     </div>
-                    <span style={{ color: "#8b949e", fontSize: "12px", fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>
+                    <span
+                      style={{
+                        color: "#8b949e",
+                        fontSize: "12px",
+                        fontFamily:
+                          '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                      }}
+                    >
                       main.js
                     </span>
                   </div>
@@ -749,10 +772,11 @@ export default function Dashboard() {
                       outline: "none",
                       color: "#c9d1d9",
                       fontSize: "14px",
-                      fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                      fontFamily:
+                        '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
                       resize: "vertical",
                       letterSpacing: "0.5px",
-                      lineHeight: "1.6"
+                      lineHeight: "1.6",
                     }}
                   />
                 </div>
@@ -776,7 +800,7 @@ export default function Dashboard() {
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "0.5rem",
-                  transition: "background-color 0.2s"
+                  transition: "background-color 0.2s",
                 }}
               >
                 {isLoading ? "🔄 Analyzing..." : "⚡ Analyze Error"}
@@ -795,7 +819,7 @@ export default function Dashboard() {
                   boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
                   marginLeft: "2rem",
                   maxHeight: "80vh",
-                  overflowY: "auto"
+                  overflowY: "auto",
                 }}
               >
                 {/* Results Header */}
@@ -806,10 +830,16 @@ export default function Dashboard() {
                     justifyContent: "space-between",
                     marginBottom: "2rem",
                     paddingBottom: "1rem",
-                    borderBottom: "1px solid #e5e7eb"
+                    borderBottom: "1px solid #e5e7eb",
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.75rem",
+                    }}
+                  >
                     <div
                       style={{
                         width: "32px",
@@ -834,7 +864,13 @@ export default function Dashboard() {
                       >
                         AI Analysis Results
                       </h2>
-                      <p style={{ fontSize: "14px", color: "#6b7280", margin: "4px 0 0" }}>
+                      <p
+                        style={{
+                          fontSize: "14px",
+                          color: "#6b7280",
+                          margin: "4px 0 0",
+                        }}
+                      >
                         Powered by advanced AI analysis
                       </p>
                     </div>
@@ -850,11 +886,12 @@ export default function Dashboard() {
                       color: "#6b7280",
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.5rem"
+                      gap: "0.5rem",
                     }}
                   >
                     <span>⚡</span>
-                    {analysisResults.metrics.total_llm_tokens.toLocaleString()} tokens processed
+                    {analysisResults.metrics.total_llm_tokens.toLocaleString()}{" "}
+                    tokens processed
                   </div>
                 </div>
 
@@ -865,7 +902,7 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       gap: "0.5rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                   >
                     <div
@@ -921,7 +958,7 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       gap: "0.5rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                   >
                     <div
@@ -935,7 +972,9 @@ export default function Dashboard() {
                         justifyContent: "center",
                       }}
                     >
-                      <span style={{ color: "#22c55e", fontSize: "12px" }}>$</span>
+                      <span style={{ color: "#22c55e", fontSize: "12px" }}>
+                        $
+                      </span>
                     </div>
                     <h3
                       style={{
@@ -954,11 +993,12 @@ export default function Dashboard() {
                       border: "2px solid #374151",
                       borderRadius: "8px",
                       padding: "1.5rem",
-                      fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                      fontFamily:
+                        '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
                       fontSize: "14px",
                       color: "#22c55e",
                       position: "relative",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                     }}
                   >
                     <div
@@ -967,13 +1007,24 @@ export default function Dashboard() {
                         top: "8px",
                         left: "12px",
                         display: "flex",
-                        alignItems: "center"
+                        alignItems: "center",
                       }}
                     >
-                      <span style={{ color: "#6b7280", fontSize: "14px" }}>$</span>
+                      <span style={{ color: "#6b7280", fontSize: "14px" }}>
+                        $
+                      </span>
                     </div>
-                    <div style={{ marginTop: "24px", letterSpacing: "0.5px", lineHeight: "1.6" }}>
-                      <span style={{ color: "#6b7280" }}>location:</span> <span style={{ color: "#f97316" }}>{analysisResults.analysis.error_location}</span>
+                    <div
+                      style={{
+                        marginTop: "24px",
+                        letterSpacing: "0.5px",
+                        lineHeight: "1.6",
+                      }}
+                    >
+                      <span style={{ color: "#6b7280" }}>location:</span>{" "}
+                      <span style={{ color: "#f97316" }}>
+                        {analysisResults.analysis.error_location}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -985,7 +1036,7 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       gap: "0.5rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                   >
                     <div
@@ -999,7 +1050,9 @@ export default function Dashboard() {
                         justifyContent: "center",
                       }}
                     >
-                      <span style={{ color: "#3b82f6", fontSize: "12px" }}>{">"}</span>
+                      <span style={{ color: "#3b82f6", fontSize: "12px" }}>
+                        {">"}
+                      </span>
                     </div>
                     <h3
                       style={{
@@ -1018,11 +1071,12 @@ export default function Dashboard() {
                       border: "2px solid #374151",
                       borderRadius: "8px",
                       padding: "1.5rem",
-                      fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                      fontFamily:
+                        '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
                       fontSize: "14px",
                       color: "#e5e7eb",
                       position: "relative",
-                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
+                      boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                     }}
                   >
                     <div
@@ -1031,14 +1085,24 @@ export default function Dashboard() {
                         top: "8px",
                         left: "12px",
                         display: "flex",
-                        alignItems: "center"
+                        alignItems: "center",
                       }}
                     >
-                      <span style={{ color: "#6b7280", fontSize: "14px" }}>$</span>
+                      <span style={{ color: "#6b7280", fontSize: "14px" }}>
+                        $
+                      </span>
                     </div>
-                    <div style={{ marginTop: "24px", letterSpacing: "0.5px", lineHeight: "1.6" }}>
+                    <div
+                      style={{
+                        marginTop: "24px",
+                        letterSpacing: "0.5px",
+                        lineHeight: "1.6",
+                      }}
+                    >
                       <span style={{ color: "#6b7280" }}>trace:</span>{" "}
-                      <span style={{ color: "#60a5fa" }}>{analysisResults.analysis.execution_path}</span>
+                      <span style={{ color: "#60a5fa" }}>
+                        {analysisResults.analysis.execution_path}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1050,7 +1114,7 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       gap: "0.5rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                   >
                     <div
@@ -1086,19 +1150,27 @@ export default function Dashboard() {
                     }}
                   >
                     <ol style={{ margin: 0, paddingLeft: "1.5rem" }}>
-                      {analysisResults.analysis.replication_steps.map((step, index) => (
-                        <li
-                          key={index}
-                          style={{
-                            fontSize: "14px",
-                            lineHeight: "1.6",
-                            color: "#374151",
-                            marginBottom: index < analysisResults.analysis.replication_steps.length - 1 ? "0.75rem" : 0,
-                          }}
-                        >
-                          {step}
-                        </li>
-                      ))}
+                      {analysisResults.analysis.replication_steps.map(
+                        (step, index) => (
+                          <li
+                            key={index}
+                            style={{
+                              fontSize: "14px",
+                              lineHeight: "1.6",
+                              color: "#374151",
+                              marginBottom:
+                                index <
+                                analysisResults.analysis.replication_steps
+                                  .length -
+                                  1
+                                  ? "0.75rem"
+                                  : 0,
+                            }}
+                          >
+                            {step}
+                          </li>
+                        ),
+                      )}
                     </ol>
                   </div>
                 </div>
@@ -1110,7 +1182,7 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       gap: "0.5rem",
-                      marginBottom: "1rem"
+                      marginBottom: "1rem",
                     }}
                   >
                     <div
@@ -1176,7 +1248,7 @@ export default function Dashboard() {
                       margin: "0 0 1rem 0",
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.5rem"
+                      gap: "0.5rem",
                     }}
                   >
                     📊 Analysis Metrics
@@ -1184,7 +1256,8 @@ export default function Dashboard() {
                   <div
                     style={{
                       display: "grid",
-                      gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+                      gridTemplateColumns:
+                        "repeat(auto-fit, minmax(150px, 1fr))",
                       gap: "1rem",
                     }}
                   >
@@ -1240,7 +1313,7 @@ export default function Dashboard() {
                     gap: "1rem",
                     marginTop: "2rem",
                     paddingTop: "1.5rem",
-                    borderTop: "1px solid #e5e7eb"
+                    borderTop: "1px solid #e5e7eb",
                   }}
                 >
                   <button
@@ -1257,7 +1330,7 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      gap: "0.5rem"
+                      gap: "0.5rem",
                     }}
                   >
                     📋 Copy Analysis
@@ -1276,7 +1349,7 @@ export default function Dashboard() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      gap: "0.5rem"
+                      gap: "0.5rem",
                     }}
                   >
                     💾 Save Report
@@ -1310,184 +1383,185 @@ export default function Dashboard() {
                   gap: "1.5rem",
                 }}
               >
-              {/* Ready to Get Started Card */}
-              <div
-                style={{
-                  backgroundColor: "white",
-                  borderRadius: "12px",
-                  padding: "1.5rem",
-                  border: "1px solid #e5e7eb",
-                  boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
-                }}
-              >
+                {/* Ready to Get Started Card */}
                 <div
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <span style={{ fontSize: "18px" }}>🚀</span>
-                  <h3
-                    style={{
-                      fontSize: "1rem",
-                      fontWeight: "600",
-                      color: "#1f2937",
-                      margin: 0,
-                    }}
-                  >
-                    Ready to Get Started?
-                  </h3>
-                </div>
-
-                <p
-                  style={{
-                    fontSize: "14px",
-                    color: "#6b7280",
-                    marginBottom: "1rem",
-                    lineHeight: "1.5",
-                  }}
-                >
-                  Connect your repository to unlock advanced AI-driven error
-                  analysis. Support for JavaScript, Python, Java, Go, and
-                  DevOps.
-                </p>
-
-                <button
-                  onClick={() => handleNavigation("/connect-repository")}
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem 1rem",
-                    backgroundColor: "#8b5cf6",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "6px",
-                    fontSize: "14px",
-                    fontWeight: "500",
-                    cursor: "pointer",
-                  }}
-                >
-                  Connect Repository
-                </button>
-              </div>
-
-              {/* Pro Tips Card */}
-              <div
-                style={{
-                  backgroundColor: "white",
-                  borderRadius: "12px",
-                  padding: "1.5rem",
-                  border: "1px solid #e5e7eb",
-                  boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <span style={{ fontSize: "18px" }}>💡</span>
-                  <h3
-                    style={{
-                      fontSize: "1rem",
-                      fontWeight: "600",
-                      color: "#1f2937",
-                      margin: 0,
-                    }}
-                  >
-                    Pro Tips
-                  </h3>
-                </div>
-
-                <p
-                  style={{
-                    fontSize: "13px",
-                    color: "#6b7280",
-                    marginBottom: "1rem",
-                    lineHeight: "1.4",
-                  }}
-                >
-                  Maximize your analysis results with these expert
-                  recommendations:
-                </p>
-
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
+                    backgroundColor: "white",
+                    borderRadius: "12px",
+                    padding: "1.5rem",
+                    border: "1px solid #e5e7eb",
+                    boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
                   }}
                 >
                   <div
                     style={{
                       display: "flex",
-                      alignItems: "flex-start",
+                      alignItems: "center",
                       gap: "0.5rem",
+                      marginBottom: "1rem",
                     }}
                   >
-                    <span style={{ fontSize: "12px", color: "#8b5cf6" }}>
-                      ✓
-                    </span>
-                    <span
+                    <span style={{ fontSize: "18px" }}>🚀</span>
+                    <h3
                       style={{
-                        fontSize: "12px",
-                        color: "#4b5563",
-                        lineHeight: "1.4",
+                        fontSize: "1rem",
+                        fontWeight: "600",
+                        color: "#1f2937",
+                        margin: 0,
                       }}
                     >
-                      Include the complete error message with all details for
-                      precise analysis
-                    </span>
+                      Ready to Get Started?
+                    </h3>
                   </div>
+
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      color: "#6b7280",
+                      marginBottom: "1rem",
+                      lineHeight: "1.5",
+                    }}
+                  >
+                    Connect your repository to unlock advanced AI-driven error
+                    analysis. Support for JavaScript, Python, Java, Go, and
+                    DevOps.
+                  </p>
+
+                  <button
+                    onClick={() => handleNavigation("/connect-repository")}
+                    style={{
+                      width: "100%",
+                      padding: "0.5rem 1rem",
+                      backgroundColor: "#8b5cf6",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "6px",
+                      fontSize: "14px",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Connect Repository
+                  </button>
+                </div>
+
+                {/* Pro Tips Card */}
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "12px",
+                    padding: "1.5rem",
+                    border: "1px solid #e5e7eb",
+                    boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    <span style={{ fontSize: "18px" }}>💡</span>
+                    <h3
+                      style={{
+                        fontSize: "1rem",
+                        fontWeight: "600",
+                        color: "#1f2937",
+                        margin: 0,
+                      }}
+                    >
+                      Pro Tips
+                    </h3>
+                  </div>
+
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      color: "#6b7280",
+                      marginBottom: "1rem",
+                      lineHeight: "1.4",
+                    }}
+                  >
+                    Maximize your analysis results with these expert
+                    recommendations:
+                  </p>
 
                   <div
                     style={{
                       display: "flex",
-                      alignItems: "flex-start",
-                      gap: "0.5rem",
+                      flexDirection: "column",
+                      gap: "0.75rem",
                     }}
                   >
-                    <span style={{ fontSize: "12px", color: "#f59e0b" }}>
-                      🎯
-                    </span>
-                    <span
+                    <div
                       style={{
-                        fontSize: "12px",
-                        color: "#4b5563",
-                        lineHeight: "1.4",
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: "0.5rem",
                       }}
                     >
-                      Stack traces help pinpoint the exact error location
-                      instantly
-                    </span>
-                  </div>
+                      <span style={{ fontSize: "12px", color: "#8b5cf6" }}>
+                        ✓
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          color: "#4b5563",
+                          lineHeight: "1.4",
+                        }}
+                      >
+                        Include the complete error message with all details for
+                        precise analysis
+                      </span>
+                    </div>
 
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: "0.5rem",
-                    }}
-                  >
-                    <span style={{ fontSize: "12px", color: "#10b981" }}>
-                      💬
-                    </span>
-                    <span
+                    <div
                       style={{
-                        fontSize: "12px",
-                        color: "#4b5563",
-                        lineHeight: "1.4",
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: "0.5rem",
                       }}
                     >
-                      Share context about your goals for more targeted solutions
-                    </span>
+                      <span style={{ fontSize: "12px", color: "#f59e0b" }}>
+                        🎯
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          color: "#4b5563",
+                          lineHeight: "1.4",
+                        }}
+                      >
+                        Stack traces help pinpoint the exact error location
+                        instantly
+                      </span>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: "0.5rem",
+                      }}
+                    >
+                      <span style={{ fontSize: "12px", color: "#10b981" }}>
+                        💬
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          color: "#4b5563",
+                          lineHeight: "1.4",
+                        }}
+                      >
+                        Share context about your goals for more targeted
+                        solutions
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
               </div>
             )}
           </div>

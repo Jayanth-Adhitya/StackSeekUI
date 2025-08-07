@@ -24,17 +24,20 @@ import {
   Phone,
   MessageCircle,
   Menu,
-  X
+  X,
 } from "lucide-react";
 
 function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  const handleScrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+  ) => {
     e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
       setMobileMenuOpen(false); // Close mobile menu if open
     }
   };
@@ -51,40 +54,45 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
     {
       icon: <Zap className="w-6 h-6" />,
       title: "AI-Powered Analysis",
-      description: "Advanced AI models analyze your errors and provide intelligent solutions in seconds"
+      description:
+        "Advanced AI models analyze your errors and provide intelligent solutions in seconds",
     },
     {
       icon: <Code2 className="w-6 h-6" />,
       title: "Multi-Language Support",
-      description: "Support for 10+ programming languages including JavaScript, Python, Java, and more"
+      description:
+        "Support for 10+ programming languages including JavaScript, Python, Java, and more",
     },
     {
       icon: <GitBranch className="w-6 h-6" />,
       title: "Git Integration",
-      description: "Connect your repositories from GitHub, GitLab, Bitbucket, and other providers"
+      description:
+        "Connect your repositories from GitHub, GitLab, Bitbucket, and other providers",
     },
     {
       icon: <Shield className="w-6 h-6" />,
       title: "Enterprise Security",
-      description: "Your code and data are encrypted and never stored permanently"
+      description:
+        "Your code and data are encrypted and never stored permanently",
     },
     {
       icon: <LineChart className="w-6 h-6" />,
       title: "Error Analytics",
-      description: "Track error patterns and get insights to prevent future issues"
+      description:
+        "Track error patterns and get insights to prevent future issues",
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Team Collaboration",
-      description: "Share solutions and collaborate with your team members"
-    }
+      description: "Share solutions and collaborate with your team members",
+    },
   ];
 
   const stats = [
     { value: "50K+", label: "Errors Analyzed" },
     { value: "10K+", label: "Active Developers" },
     { value: "99.9%", label: "Uptime" },
-    { value: "< 3s", label: "Analysis Time" }
+    { value: "< 3s", label: "Analysis Time" },
   ];
 
   return (
@@ -99,23 +107,50 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
                 alt="StackSeek Logo"
                 className="h-10 w-auto transition-transform duration-200 hover:scale-105"
               />
-              <h1 className="text-xl sm:text-2xl font-bold text-blue-700 dark:text-blue-400">StackSeek</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-blue-700 dark:text-blue-400">
+                StackSeek
+              </h1>
             </div>
-            
+
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">
-              <a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Features</a>
-              <a href="#how-it-works" onClick={(e) => handleScrollToSection(e, 'how-it-works')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">How It Works</a>
-              <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Pricing</a>
-              <Button variant="ghost" onClick={handleSignIn} className="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <a
+                href="#features"
+                onClick={(e) => handleScrollToSection(e, "features")}
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >
+                Features
+              </a>
+              <a
+                href="#how-it-works"
+                onClick={(e) => handleScrollToSection(e, "how-it-works")}
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >
+                How It Works
+              </a>
+              <a
+                href="#pricing"
+                onClick={(e) => handleScrollToSection(e, "pricing")}
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+              >
+                Pricing
+              </a>
+              <Button
+                variant="ghost"
+                onClick={handleSignIn}
+                className="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
                 Sign In
               </Button>
-              <Button onClick={handleGetStarted} className="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-lg professional-button font-medium px-6">
+              <Button
+                onClick={handleGetStarted}
+                className="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-lg professional-button font-medium px-6"
+              >
                 Get Started Free
               </Button>
               <ThemeToggle />
             </div>
-            
+
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center gap-2">
               <ThemeToggle />
@@ -131,19 +166,44 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
               </button>
             </div>
           </div>
-          
+
           {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div className="md:hidden py-4 border-t border-gray-200/50 dark:border-gray-700/50 animate-fade-in">
               <div className="space-y-2">
-                <a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Features</a>
-                <a href="#how-it-works" onClick={(e) => handleScrollToSection(e, 'how-it-works')} className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">How It Works</a>
-                <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Pricing</a>
+                <a
+                  href="#features"
+                  onClick={(e) => handleScrollToSection(e, "features")}
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                >
+                  Features
+                </a>
+                <a
+                  href="#how-it-works"
+                  onClick={(e) => handleScrollToSection(e, "how-it-works")}
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                >
+                  How It Works
+                </a>
+                <a
+                  href="#pricing"
+                  onClick={(e) => handleScrollToSection(e, "pricing")}
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                >
+                  Pricing
+                </a>
                 <div className="pt-2 space-y-2">
-                  <Button variant="ghost" onClick={handleSignIn} className="w-full font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <Button
+                    variant="ghost"
+                    onClick={handleSignIn}
+                    className="w-full font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
                     Sign In
                   </Button>
-                  <Button onClick={handleGetStarted} className="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-lg professional-button font-medium">
+                  <Button
+                    onClick={handleGetStarted}
+                    className="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-lg professional-button font-medium"
+                  >
                     Get Started Free
                   </Button>
                 </div>
@@ -158,27 +218,39 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
         <div className="max-w-7xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-blue-50 dark:from-blue-900/50 dark:to-blue-800/50 text-blue-800 dark:text-blue-200 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full mb-6 sm:mb-8 shadow-sm text-xs sm:text-sm">
             <Gauge className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="font-semibold tracking-wide">Trusted by 10,000+ developers worldwide</span>
+            <span className="font-semibold tracking-wide">
+              Trusted by 10,000+ developers worldwide
+            </span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-gray-100 mb-6 sm:mb-8 leading-tight px-2">
-            Error Analysis<br />
+            Error Analysis
+            <br />
             <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 bg-clip-text text-transparent">
               Made Simple
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed px-4">
-            StackSeek uses cutting-edge AI to analyze your errors, provide instant solutions,
-            and help you write better code. Stop wasting hours on debugging.
+            StackSeek uses cutting-edge AI to analyze your errors, provide
+            instant solutions, and help you write better code. Stop wasting
+            hours on debugging.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 sm:mb-16 px-4">
-            <Button size="lg" onClick={handleGetStarted} className="w-full sm:w-auto bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-xl professional-button px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-medium">
+            <Button
+              size="lg"
+              onClick={handleGetStarted}
+              className="w-full sm:w-auto bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-xl professional-button px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-medium"
+            >
               Start Free Trial
               <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-medium border-2 hover:bg-gray-50 dark:hover:bg-gray-800">
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full sm:w-auto px-8 sm:px-10 py-5 sm:py-6 text-base sm:text-lg font-medium border-2 hover:bg-gray-50 dark:hover:bg-gray-800"
+            >
               Watch Demo
             </Button>
           </div>
@@ -187,8 +259,12 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 max-w-3xl mx-auto px-4">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">{stat.value}</div>
-                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+                  {stat.value}
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -196,14 +272,18 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 sm:py-20 px-4 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300">
+      <section
+        id="features"
+        className="py-16 sm:py-20 px-4 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6 leading-tight px-2">
               Everything You Need to Debug Efficiently
             </h2>
             <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
-              StackSeek provides comprehensive error analysis tools powered by advanced AI
+              StackSeek provides comprehensive error analysis tools powered by
+              advanced AI
             </p>
           </div>
 
@@ -232,7 +312,10 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-16 sm:py-24 px-4 bg-gradient-to-b from-white to-gray-50/50 dark:from-gray-900 dark:to-gray-900/50 transition-colors duration-300">
+      <section
+        id="how-it-works"
+        className="py-16 sm:py-24 px-4 bg-gradient-to-b from-white to-gray-50/50 dark:from-gray-900 dark:to-gray-900/50 transition-colors duration-300"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6 px-2">
@@ -244,33 +327,49 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
           </div>
 
           <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
-            <div className="text-center animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <div
+              className="text-center animate-fade-in"
+              style={{ animationDelay: "0.1s" }}
+            >
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-xl transform hover:scale-110 transition-transform">
                 1
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Paste Your Error</h3>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">
+                Paste Your Error
+              </h3>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed px-4">
                 Copy and paste your error message or stack trace into StackSeek
               </p>
             </div>
 
-            <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div
+              className="text-center animate-fade-in"
+              style={{ animationDelay: "0.2s" }}
+            >
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-xl transform hover:scale-110 transition-transform">
                 2
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">AI Analysis</h3>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">
+                AI Analysis
+              </h3>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed px-4">
                 Our AI analyzes your error and generates comprehensive solutions
               </p>
             </div>
 
-            <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div
+              className="text-center animate-fade-in"
+              style={{ animationDelay: "0.3s" }}
+            >
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-700 to-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-4 sm:mb-6 shadow-xl transform hover:scale-110 transition-transform">
                 3
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Apply Solutions</h3>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">
+                Apply Solutions
+              </h3>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed px-4">
-                Get step-by-step fixes and code suggestions to resolve your issue
+                Get step-by-step fixes and code suggestions to resolve your
+                issue
               </p>
             </div>
           </div>
@@ -278,7 +377,10 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-16 sm:py-24 px-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900/50 dark:to-gray-900 transition-colors duration-300">
+      <section
+        id="pricing"
+        className="py-16 sm:py-24 px-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900/50 dark:to-gray-900 transition-colors duration-300"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6 px-2">
@@ -291,89 +393,145 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
 
           <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
             {/* Free Plan */}
-            <Card className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <Card
+              className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm animate-fade-in"
+              style={{ animationDelay: "0.1s" }}
+            >
               <CardContent className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Free</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">
+                  Free
+                </h3>
                 <div className="mb-4 sm:mb-6">
-                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">$0</span>
-                  <span className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">/month</span>
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">
+                    $0
+                  </span>
+                  <span className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">
+                    /month
+                  </span>
                 </div>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">50 error analyses/month</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      50 error analyses/month
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">Basic AI suggestions</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Basic AI suggestions
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">Public repositories</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Public repositories
+                    </span>
                   </li>
                 </ul>
-                <Button variant="outline" onClick={handleGetStarted} className="w-full">Get Started</Button>
+                <Button
+                  variant="outline"
+                  onClick={handleGetStarted}
+                  className="w-full"
+                >
+                  Get Started
+                </Button>
               </CardContent>
             </Card>
 
             {/* Pro Plan */}
-            <Card className="relative border-blue-200 dark:border-blue-700 shadow-2xl hover:shadow-3xl transition-all duration-300 bg-white dark:bg-gray-800 sm:scale-105 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <Card
+              className="relative border-blue-200 dark:border-blue-700 shadow-2xl hover:shadow-3xl transition-all duration-300 bg-white dark:bg-gray-800 sm:scale-105 animate-fade-in"
+              style={{ animationDelay: "0.2s" }}
+            >
               <div className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-700 to-blue-500 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
                 Most Popular
               </div>
               <CardContent className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Pro</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">
+                  Pro
+                </h3>
                 <div className="mb-4 sm:mb-6">
-                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">$19</span>
-                  <span className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">/month</span>
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">
+                    $19
+                  </span>
+                  <span className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">
+                    /month
+                  </span>
                 </div>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">Unlimited error analyses</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Unlimited error analyses
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">Advanced AI with GPT-4</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Advanced AI with GPT-4
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">Private repositories</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Private repositories
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">Priority support</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Priority support
+                    </span>
                   </li>
                 </ul>
-                <Button onClick={handleGetStarted} className="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600">
+                <Button
+                  onClick={handleGetStarted}
+                  className="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600"
+                >
                   Start Free Trial
                 </Button>
               </CardContent>
             </Card>
 
             {/* Enterprise Plan */}
-            <Card className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <Card
+              className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm animate-fade-in"
+              style={{ animationDelay: "0.3s" }}
+            >
               <CardContent className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Enterprise</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">
+                  Enterprise
+                </h3>
                 <div className="mb-4 sm:mb-6">
-                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">Custom</span>
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">
+                    Custom
+                  </span>
                 </div>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">Everything in Pro</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Everything in Pro
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">On-premise deployment</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      On-premise deployment
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">Custom AI models</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Custom AI models
+                    </span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 dark:text-gray-300">SLA & dedicated support</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      SLA & dedicated support
+                    </span>
                   </li>
                 </ul>
                 <div className="grid grid-cols-2 gap-2 mt-4">
@@ -387,9 +545,7 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
                       <span>WhatsApp</span>
                     </Button>
                   </a>
-                  <a
-                    href="tel:+919629193423"
-                  >
+                  <a href="tel:+919629193423">
                     <Button variant="outline" className="w-full h-10">
                       <Phone className="w-4 h-4 mr-2 flex-shrink-0" />
                       <span>Call Now</span>
@@ -407,13 +563,17 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
             {stats.map((stat, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="animate-fade-in transform hover:scale-110 transition-transform"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3">{stat.value}</div>
-                <div className="text-white/80 text-sm sm:text-base lg:text-lg font-medium">{stat.label}</div>
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3">
+                  {stat.value}
+                </div>
+                <div className="text-white/80 text-sm sm:text-base lg:text-lg font-medium">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -427,9 +587,14 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
             Ready to Debug Smarter?
           </h2>
           <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8 sm:mb-10 leading-relaxed px-4">
-            Join thousands of developers who are already saving hours on debugging
+            Join thousands of developers who are already saving hours on
+            debugging
           </p>
-          <Button size="lg" onClick={handleGetStarted} className="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-xl professional-button px-8 sm:px-12 py-5 sm:py-7 text-base sm:text-lg font-medium">
+          <Button
+            size="lg"
+            onClick={handleGetStarted}
+            className="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-xl professional-button px-8 sm:px-12 py-5 sm:py-7 text-base sm:text-lg font-medium"
+          >
             Start Your Free Trial
             <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
           </Button>
@@ -453,36 +618,95 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
                 <h3 className="text-xl sm:text-2xl font-bold">StackSeek</h3>
               </div>
               <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
-                AI-powered error analysis for modern developers. Debug smarter, ship faster.
+                AI-powered error analysis for modern developers. Debug smarter,
+                ship faster.
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4 sm:mb-6 text-base sm:text-lg">Product</h4>
+              <h4 className="font-semibold mb-4 sm:mb-6 text-base sm:text-lg">
+                Product
+              </h4>
               <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
-                <li><a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">API</a></li>
+                <li>
+                  <a
+                    href="#features"
+                    onClick={(e) => handleScrollToSection(e, "features")}
+                    className="hover:text-white transition-colors"
+                  >
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#pricing"
+                    onClick={(e) => handleScrollToSection(e, "pricing")}
+                    className="hover:text-white transition-colors"
+                  >
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Documentation
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    API
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4 sm:mb-6 text-base sm:text-lg">Company</h4>
+              <h4 className="font-semibold mb-4 sm:mb-6 text-base sm:text-lg">
+                Company
+              </h4>
               <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Contact
+                  </a>
+                </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4 sm:mb-6 text-base sm:text-lg">Legal</h4>
+              <h4 className="font-semibold mb-4 sm:mb-6 text-base sm:text-lg">
+                Legal
+              </h4>
               <ul className="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-white transition-colors">
+                    Security
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

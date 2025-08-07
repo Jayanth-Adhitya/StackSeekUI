@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import { ArrowLeft, Mail, CheckCircle } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { useState } from "react";
+import { ArrowLeft, Mail, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [isEmailSent, setIsEmailSent] = useState(false)
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEmailSent, setIsEmailSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
     // Simulate API call
     setTimeout(() => {
-      setIsLoading(false)
-      setIsEmailSent(true)
-    }, 2000)
-  }
+      setIsLoading(false);
+      setIsEmailSent(true);
+    }, 2000);
+  };
 
   const handleBackToLogin = () => {
-    window.location.href = '/login'
-  }
+    window.location.href = "/login";
+  };
 
   const handleBackToHome = () => {
-    window.location.href = '/'
-  }
+    window.location.href = "/";
+  };
 
   if (isEmailSent) {
     return (
@@ -37,9 +43,9 @@ export default function ForgotPassword() {
         {/* Header */}
         <header className="flex items-center justify-between p-6 border-b">
           <div className="flex items-center gap-4">
-            <Button 
+            <Button
               onClick={handleBackToHome}
-              variant="ghost" 
+              variant="ghost"
               size="sm"
               className="transition-all duration-200 hover:scale-105"
             >
@@ -72,13 +78,14 @@ export default function ForgotPassword() {
                 </CardDescription>
               </div>
             </CardHeader>
-            
+
             <CardContent className="space-y-6">
               <Alert>
                 <Mail className="h-4 w-4" />
                 <AlertDescription>
-                  We've sent a password reset link to <strong>{email}</strong>. 
-                  Please check your inbox and follow the instructions to reset your password.
+                  We've sent a password reset link to <strong>{email}</strong>.
+                  Please check your inbox and follow the instructions to reset
+                  your password.
                 </AlertDescription>
               </Alert>
 
@@ -90,7 +97,7 @@ export default function ForgotPassword() {
                 >
                   Back to Sign In
                 </Button>
-                
+
                 <Button
                   onClick={() => setIsEmailSent(false)}
                   variant="outline"
@@ -102,7 +109,7 @@ export default function ForgotPassword() {
               </div>
 
               <div className="text-center text-sm text-muted-foreground">
-                Didn't receive the email? Check your spam folder or{' '}
+                Didn't receive the email? Check your spam folder or{" "}
                 <Button
                   onClick={() => setIsEmailSent(false)}
                   variant="link"
@@ -115,7 +122,7 @@ export default function ForgotPassword() {
           </Card>
         </main>
       </div>
-    )
+    );
   }
 
   return (
@@ -123,9 +130,9 @@ export default function ForgotPassword() {
       {/* Header */}
       <header className="flex items-center justify-between p-6 border-b">
         <div className="flex items-center gap-4">
-          <Button 
+          <Button
             onClick={handleBackToLogin}
-            variant="ghost" 
+            variant="ghost"
             size="sm"
             className="transition-all duration-200 hover:scale-105"
           >
@@ -154,11 +161,12 @@ export default function ForgotPassword() {
             <div>
               <CardTitle className="text-2xl">Forgot your password?</CardTitle>
               <CardDescription>
-                No worries! Enter your email address and we'll send you a reset link
+                No worries! Enter your email address and we'll send you a reset
+                link
               </CardDescription>
             </div>
           </CardHeader>
-          
+
           <CardContent className="space-y-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
@@ -189,13 +197,13 @@ export default function ForgotPassword() {
                     Sending reset link...
                   </>
                 ) : (
-                  'Send Reset Link'
+                  "Send Reset Link"
                 )}
               </Button>
             </form>
 
             <div className="text-center text-sm text-muted-foreground">
-              Remember your password?{' '}
+              Remember your password?{" "}
               <Button
                 onClick={handleBackToLogin}
                 variant="link"
@@ -230,5 +238,5 @@ export default function ForgotPassword() {
         </div>
       )}
     </div>
-  )
+  );
 }

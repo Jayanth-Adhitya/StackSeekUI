@@ -1,85 +1,91 @@
-import { useState } from 'react'
-import { ArrowLeft, Mail, Lock, Eye, EyeOff, User } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Checkbox } from "@/components/ui/checkbox"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { useState } from "react";
+import { ArrowLeft, Mail, Lock, Eye, EyeOff, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Checkbox } from "@/components/ui/checkbox";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Register() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [acceptedTerms, setAcceptedTerms] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match')
-      return
-    }
-    
-    if (!acceptedTerms) {
-      alert('Please accept the terms and conditions')
-      return
+      alert("Passwords do not match");
+      return;
     }
 
-    setIsLoading(true)
+    if (!acceptedTerms) {
+      alert("Please accept the terms and conditions");
+      return;
+    }
+
+    setIsLoading(true);
 
     // Simulate API call and registration
     setTimeout(() => {
       // Store login state and user info
-      localStorage.setItem('isLoggedIn', 'true')
-      localStorage.setItem('userEmail', formData.email)
-      localStorage.setItem('userName', formData.name)
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", formData.email);
+      localStorage.setItem("userName", formData.name);
 
       // Redirect to connect repository page
-      window.location.href = '/connect-repository'
-    }, 1500)
-  }
+      window.location.href = "/connect-repository";
+    }, 1500);
+  };
 
   const handleGoogleRegister = async () => {
-    setIsGoogleLoading(true)
+    setIsGoogleLoading(true);
 
     // Simulate Google OAuth flow
     setTimeout(() => {
       // Store login state and user info
-      localStorage.setItem('isLoggedIn', 'true')
-      localStorage.setItem('userEmail', 'user@gmail.com')
-      localStorage.setItem('userName', 'Google User')
-      localStorage.setItem('loginMethod', 'google')
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", "user@gmail.com");
+      localStorage.setItem("userName", "Google User");
+      localStorage.setItem("loginMethod", "google");
 
       // Redirect to connect repository page
-      window.location.href = '/connect-repository'
-    }, 1500)
-  }
+      window.location.href = "/connect-repository";
+    }, 1500);
+  };
 
   const handleBackToHome = () => {
-    window.location.href = '/'
-  }
+    window.location.href = "/";
+  };
 
   return (
     <div className="min-h-screen bg-background transition-colors duration-300">
       {/* Header */}
       <header className="flex items-center justify-between p-6 border-b">
         <div className="flex items-center gap-4">
-          <Button 
+          <Button
             onClick={handleBackToHome}
-            variant="ghost" 
+            variant="ghost"
             size="sm"
             className="transition-all duration-200 hover:scale-105"
           >
@@ -113,7 +119,7 @@ export default function Register() {
               </CardDescription>
             </div>
           </CardHeader>
-          
+
           <CardContent className="space-y-6">
             {/* Google Register */}
             <Button
@@ -170,7 +176,7 @@ export default function Register() {
                     type="text"
                     placeholder="Enter your full name"
                     value={formData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
                     className="pl-10 transition-all duration-200 hover:border-primary/50 focus:border-primary"
                     required
                   />
@@ -186,7 +192,7 @@ export default function Register() {
                     type="email"
                     placeholder="Enter your email"
                     value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
                     className="pl-10 transition-all duration-200 hover:border-primary/50 focus:border-primary"
                     required
                   />
@@ -202,7 +208,9 @@ export default function Register() {
                     type={showPassword ? "text" : "password"}
                     placeholder="Create a password"
                     value={formData.password}
-                    onChange={(e) => handleInputChange('password', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("password", e.target.value)
+                    }
                     className="pl-10 pr-10 transition-all duration-200 hover:border-primary/50 focus:border-primary"
                     required
                   />
@@ -231,7 +239,9 @@ export default function Register() {
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm your password"
                     value={formData.confirmPassword}
-                    onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("confirmPassword", e.target.value)
+                    }
                     className="pl-10 pr-10 transition-all duration-200 hover:border-primary/50 focus:border-primary"
                     required
                   />
@@ -257,18 +267,18 @@ export default function Register() {
                   checked={acceptedTerms}
                   onCheckedChange={setAcceptedTerms}
                 />
-                <Label 
-                  htmlFor="terms" 
+                <Label
+                  htmlFor="terms"
                   className="text-sm font-normal cursor-pointer"
                 >
-                  I agree to the{' '}
+                  I agree to the{" "}
                   <Button
                     variant="link"
                     className="h-auto p-0 text-primary hover:underline text-sm"
                   >
                     Terms of Service
-                  </Button>
-                  {' '}and{' '}
+                  </Button>{" "}
+                  and{" "}
                   <Button
                     variant="link"
                     className="h-auto p-0 text-primary hover:underline text-sm"
@@ -290,15 +300,15 @@ export default function Register() {
                     Creating account...
                   </>
                 ) : (
-                  'Create Account'
+                  "Create Account"
                 )}
               </Button>
             </form>
 
             <div className="text-center text-sm text-muted-foreground">
-              Already have an account?{' '}
+              Already have an account?{" "}
               <Button
-                onClick={() => window.location.href = '/login'}
+                onClick={() => (window.location.href = "/login")}
                 variant="link"
                 className="h-auto p-0 text-primary hover:underline"
               >
@@ -322,7 +332,9 @@ export default function Register() {
               <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
               <div className="text-center">
                 <h3 className="font-semibold">
-                  {isGoogleLoading ? 'Connecting with Google...' : 'Creating your account...'}
+                  {isGoogleLoading
+                    ? "Connecting with Google..."
+                    : "Creating your account..."}
                 </h3>
                 <p className="text-sm text-muted-foreground">
                   Please wait a moment
@@ -333,5 +345,5 @@ export default function Register() {
         </div>
       )}
     </div>
-  )
+  );
 }

@@ -1,43 +1,43 @@
-import { LogOut, User } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { LogOut, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 export function UserProfile() {
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"
-  const userEmail = localStorage.getItem("userEmail") || "user@example.com"
-  const userName = localStorage.getItem("userName") || userEmail
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const userEmail = localStorage.getItem("userEmail") || "user@example.com";
+  const userName = localStorage.getItem("userName") || userEmail;
 
   // Don't render if user is not logged in
   if (!isLoggedIn) {
-    return null
+    return null;
   }
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn")
-    localStorage.removeItem("userEmail")
-    localStorage.removeItem("userName")
-    localStorage.removeItem("loginMethod")
-    localStorage.removeItem("connectedRepo")
-    window.location.href = "/"
-  }
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("loginMethod");
+    localStorage.removeItem("connectedRepo");
+    window.location.href = "/";
+  };
 
   const handleProfile = () => {
     // Navigate to profile/settings page
-    window.location.href = "/settings"
-  }
+    window.location.href = "/settings";
+  };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           className="relative h-10 w-10 rounded-full transition-all duration-200 hover:scale-105"
         >
           <Avatar className="h-10 w-10">
@@ -47,9 +47,9 @@ export function UserProfile() {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent 
-        className="w-56 animate-in slide-in-from-top-2 duration-200" 
-        align="end" 
+      <DropdownMenuContent
+        className="w-56 animate-in slide-in-from-top-2 duration-200"
+        align="end"
         forceMount
       >
         <div className="flex items-center justify-start gap-2 p-2">
@@ -61,7 +61,7 @@ export function UserProfile() {
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem 
+        <DropdownMenuItem
           onClick={handleProfile}
           className="cursor-pointer transition-colors duration-200"
         >
@@ -69,7 +69,7 @@ export function UserProfile() {
           Profile Settings
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem 
+        <DropdownMenuItem
           onClick={handleLogout}
           className="cursor-pointer text-destructive focus:text-destructive transition-colors duration-200"
         >
@@ -78,5 +78,5 @@ export function UserProfile() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import {
   AlertTriangle,
   GitBranch,
@@ -13,22 +13,28 @@ import {
   Star,
   Users,
   Calendar,
-  Code
-} from "lucide-react"
+  Code,
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 import {
   SidebarProvider,
   Sidebar,
@@ -39,101 +45,102 @@ import {
   SidebarMenuButton,
   SidebarInset,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { UserProfile } from "@/components/user-profile"
+} from "@/components/ui/sidebar";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { UserProfile } from "@/components/user-profile";
 
 export default function Dashboard() {
-  const [selectedRepo, setSelectedRepo] = useState("")
-  const [errorMessage, setErrorMessage] = useState("")
-  const [codeSnippet, setCodeSnippet] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [analysisResults, setAnalysisResults] = useState(null)
-
+  const [selectedRepo, setSelectedRepo] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [codeSnippet, setCodeSnippet] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [analysisResults, setAnalysisResults] = useState(null);
 
   // Load repositories from backend API
-  const [repositories, setRepositories] = useState([])
-  const [isLoadingRepositories, setIsLoadingRepositories] = useState(true)
+  const [repositories, setRepositories] = useState([]);
+  const [isLoadingRepositories, setIsLoadingRepositories] = useState(true);
 
   // Fetch repositories on component mount
   useEffect(() => {
     const fetchRepositories = async () => {
       try {
-        setIsLoadingRepositories(true)
-        const response = await fetch('/api/repositories', {
+        setIsLoadingRepositories(true);
+        const response = await fetch("/api/repositories", {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-            'Content-Type': 'application/json'
-          }
-        })
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+            "Content-Type": "application/json",
+          },
+        });
 
         if (response.ok) {
-          const data = await response.json()
-          setRepositories(data.repositories || [])
+          const data = await response.json();
+          setRepositories(data.repositories || []);
         } else {
-          console.error('Failed to fetch repositories:', response.status)
-          setRepositories([])
+          console.error("Failed to fetch repositories:", response.status);
+          setRepositories([]);
         }
       } catch (error) {
-        console.error('Error fetching repositories:', error)
-        setRepositories([])
+        console.error("Error fetching repositories:", error);
+        setRepositories([]);
       } finally {
-        setIsLoadingRepositories(false)
+        setIsLoadingRepositories(false);
       }
-    }
+    };
 
-    fetchRepositories()
-  }, [])
+    fetchRepositories();
+  }, []);
 
   const handleAnalyzeError = async () => {
     if (!selectedRepo) {
-      alert("Please select a repository first")
-      return
+      alert("Please select a repository first");
+      return;
     }
     if (!errorMessage.trim()) {
-      alert("Please enter an error message or stack trace")
-      return
+      alert("Please enter an error message or stack trace");
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      const response = await fetch('/api/analyze-error', {
-        method: 'POST',
+      const response = await fetch("/api/analyze-error", {
+        method: "POST",
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
-          'Content-Type': 'application/json'
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           repositoryId: selectedRepo,
           errorMessage: errorMessage.trim(),
-          codeSnippet: codeSnippet.trim() || null
-        })
-      })
+          codeSnippet: codeSnippet.trim() || null,
+        }),
+      });
 
       if (!response.ok) {
-        throw new Error(`Analysis failed: ${response.status} ${response.statusText}`)
+        throw new Error(
+          `Analysis failed: ${response.status} ${response.statusText}`,
+        );
       }
 
-      const results = await response.json()
+      const results = await response.json();
 
       if (results.success) {
-        setAnalysisResults(results.data)
+        setAnalysisResults(results.data);
       } else {
-        throw new Error(results.error || 'Analysis failed')
+        throw new Error(results.error || "Analysis failed");
       }
     } catch (error) {
-      console.error('Error analyzing error:', error)
-      alert(`Failed to analyze error: ${error.message}`)
+      console.error("Error analyzing error:", error);
+      alert(`Failed to analyze error: ${error.message}`);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleNavigation = async (url: string) => {
-    setIsLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 800))
-    window.location.href = url
-  }
+    setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    window.location.href = url;
+  };
 
   const menuItems = [
     {
@@ -163,7 +170,7 @@ export default function Dashboard() {
       label: "Settings",
       href: "#",
     },
-  ]
+  ];
 
   return (
     <SidebarProvider>
@@ -181,7 +188,7 @@ export default function Dashboard() {
               </span>
             </div>
           </SidebarHeader>
-          
+
           <SidebarContent className="px-2">
             <SidebarMenu>
               {menuItems.map((item) => (
@@ -191,7 +198,7 @@ export default function Dashboard() {
                     isActive={item.isActive}
                     className="transition-all duration-200 hover:scale-105"
                   >
-                    <a 
+                    <a
                       href={item.href}
                       onClick={item.onClick}
                       className="flex items-center gap-3"
@@ -204,7 +211,6 @@ export default function Dashboard() {
               ))}
             </SidebarMenu>
           </SidebarContent>
-
         </Sidebar>
 
         <SidebarInset className="flex-1">
@@ -213,7 +219,9 @@ export default function Dashboard() {
             <SidebarTrigger className="transition-all duration-200 hover:scale-110" />
             <Separator orientation="vertical" className="h-6" />
             <div className="flex-1">
-              <h1 className="text-xl font-semibold">Error Analysis Dashboard</h1>
+              <h1 className="text-xl font-semibold">
+                Error Analysis Dashboard
+              </h1>
               <p className="text-sm text-muted-foreground">
                 Transform errors into insights with AI-powered analysis
               </p>
@@ -226,7 +234,9 @@ export default function Dashboard() {
 
           {/* Main Content */}
           <main className="p-6">
-            <div className={`grid gap-6 ${analysisResults ? 'lg:grid-cols-2' : 'lg:grid-cols-1'}`}>
+            <div
+              className={`grid gap-6 ${analysisResults ? "lg:grid-cols-2" : "lg:grid-cols-1"}`}
+            >
               {/* Left Panel - Error Analysis */}
               <div className="space-y-6">
                 <Card className="transition-all duration-300 hover:shadow-lg">
@@ -250,10 +260,15 @@ export default function Dashboard() {
                       {isLoadingRepositories ? (
                         <div className="flex items-center gap-2 p-4 border rounded-lg">
                           <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                          <span className="text-sm text-muted-foreground">Loading repositories...</span>
+                          <span className="text-sm text-muted-foreground">
+                            Loading repositories...
+                          </span>
                         </div>
                       ) : repositories.length > 0 ? (
-                        <Select value={selectedRepo} onValueChange={setSelectedRepo}>
+                        <Select
+                          value={selectedRepo}
+                          onValueChange={setSelectedRepo}
+                        >
                           <SelectTrigger className="transition-all duration-200 hover:border-primary/50">
                             <SelectValue placeholder="Choose a repository..." />
                           </SelectTrigger>
@@ -262,7 +277,9 @@ export default function Dashboard() {
                               <SelectItem key={repo.id} value={repo.id}>
                                 <div className="flex items-center gap-3 py-1">
                                   <div className="flex-1">
-                                    <div className="font-medium">{repo.name}</div>
+                                    <div className="font-medium">
+                                      {repo.name}
+                                    </div>
                                     <div className="flex items-center gap-3 text-xs text-muted-foreground">
                                       <span className="flex items-center gap-1">
                                         <Users className="h-3 w-3" />
@@ -298,7 +315,8 @@ export default function Dashboard() {
                           <CardContent className="flex items-center gap-2 p-4">
                             <AlertTriangle className="h-4 w-4 text-warning" />
                             <span className="text-sm text-warning-foreground">
-                              Connect a repository to unlock AI-powered error analysis
+                              Connect a repository to unlock AI-powered error
+                              analysis
                             </span>
                           </CardContent>
                         </Card>
@@ -307,7 +325,9 @@ export default function Dashboard() {
 
                     {/* Error Message */}
                     <div className="space-y-2">
-                      <Label htmlFor="error-message">Error Message or Stack Trace</Label>
+                      <Label htmlFor="error-message">
+                        Error Message or Stack Trace
+                      </Label>
                       <div className="relative">
                         <div className="absolute left-3 top-3 flex items-center gap-2 text-xs text-muted-foreground">
                           <Terminal className="h-3 w-3" />
@@ -325,7 +345,9 @@ export default function Dashboard() {
 
                     {/* Code Snippet */}
                     <div className="space-y-2">
-                      <Label htmlFor="code-snippet">Code Snippet (Optional)</Label>
+                      <Label htmlFor="code-snippet">
+                        Code Snippet (Optional)
+                      </Label>
                       <div className="relative">
                         <div className="absolute left-3 top-3 flex items-center gap-2 text-xs text-muted-foreground">
                           <Terminal className="h-3 w-3" />
@@ -377,21 +399,30 @@ export default function Dashboard() {
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <div className="flex items-start gap-2">
-                          <Badge variant="secondary" className="mt-0.5">✓</Badge>
+                          <Badge variant="secondary" className="mt-0.5">
+                            ✓
+                          </Badge>
                           <p className="text-sm text-muted-foreground">
-                            Include the complete error message with all details for precise analysis
+                            Include the complete error message with all details
+                            for precise analysis
                           </p>
                         </div>
                         <div className="flex items-start gap-2">
-                          <Badge variant="secondary" className="mt-0.5">🎯</Badge>
+                          <Badge variant="secondary" className="mt-0.5">
+                            🎯
+                          </Badge>
                           <p className="text-sm text-muted-foreground">
-                            Stack traces help pinpoint the exact error location instantly
+                            Stack traces help pinpoint the exact error location
+                            instantly
                           </p>
                         </div>
                         <div className="flex items-start gap-2">
-                          <Badge variant="secondary" className="mt-0.5">💬</Badge>
+                          <Badge variant="secondary" className="mt-0.5">
+                            💬
+                          </Badge>
                           <p className="text-sm text-muted-foreground">
-                            Share context about your goals for more targeted solutions
+                            Share context about your goals for more targeted
+                            solutions
                           </p>
                         </div>
                       </CardContent>
@@ -409,11 +440,14 @@ export default function Dashboard() {
                       </CardHeader>
                       <CardContent className="space-y-4">
                         <p className="text-sm text-muted-foreground">
-                          Connect your repository to unlock advanced AI-driven error analysis. 
-                          Support for JavaScript, Python, Java, Go, and DevOps.
+                          Connect your repository to unlock advanced AI-driven
+                          error analysis. Support for JavaScript, Python, Java,
+                          Go, and DevOps.
                         </p>
                         <Button
-                          onClick={() => handleNavigation("/connect-repository")}
+                          onClick={() =>
+                            handleNavigation("/connect-repository")
+                          }
                           className="w-full transition-all duration-200 hover:scale-105"
                         >
                           <Folder className="mr-2 h-4 w-4" />
@@ -442,8 +476,13 @@ export default function Dashboard() {
                             </CardDescription>
                           </div>
                         </div>
-                        <Badge variant="secondary" className="flex items-center gap-1">
-                          ⚡ {analysisResults.metrics.total_llm_tokens.toLocaleString()} tokens
+                        <Badge
+                          variant="secondary"
+                          className="flex items-center gap-1"
+                        >
+                          ⚡{" "}
+                          {analysisResults.metrics.total_llm_tokens.toLocaleString()}{" "}
+                          tokens
                         </Badge>
                       </div>
                     </CardHeader>
@@ -474,12 +513,16 @@ export default function Dashboard() {
                           <h3 className="font-semibold">Error Location</h3>
                         </div>
                         <div className="relative">
-                          <div className="absolute left-3 top-3 text-xs text-green-400">$</div>
+                          <div className="absolute left-3 top-3 text-xs text-green-400">
+                            $
+                          </div>
                           <Card className="bg-black border-2 border-gray-600 pt-8">
                             <CardContent className="p-4">
                               <p className="font-mono text-sm text-green-400 leading-relaxed">
                                 <span className="text-gray-400">location:</span>{" "}
-                                <span className="text-orange-400">{analysisResults.analysis.error_location}</span>
+                                <span className="text-orange-400">
+                                  {analysisResults.analysis.error_location}
+                                </span>
                               </p>
                             </CardContent>
                           </Card>
@@ -495,12 +538,16 @@ export default function Dashboard() {
                           <h3 className="font-semibold">Execution Path</h3>
                         </div>
                         <div className="relative">
-                          <div className="absolute left-3 top-3 text-xs text-gray-400">$</div>
+                          <div className="absolute left-3 top-3 text-xs text-gray-400">
+                            $
+                          </div>
                           <Card className="bg-black border-2 border-gray-600 pt-8">
                             <CardContent className="p-4">
                               <p className="font-mono text-sm text-gray-200 leading-relaxed">
                                 <span className="text-gray-400">trace:</span>{" "}
-                                <span className="text-blue-400">{analysisResults.analysis.execution_path}</span>
+                                <span className="text-blue-400">
+                                  {analysisResults.analysis.execution_path}
+                                </span>
                               </p>
                             </CardContent>
                           </Card>
@@ -518,11 +565,16 @@ export default function Dashboard() {
                         <Card>
                           <CardContent className="p-4">
                             <ol className="list-decimal list-inside space-y-2">
-                              {analysisResults.analysis.replication_steps.map((step, index) => (
-                                <li key={index} className="text-sm leading-relaxed">
-                                  {step}
-                                </li>
-                              ))}
+                              {analysisResults.analysis.replication_steps.map(
+                                (step, index) => (
+                                  <li
+                                    key={index}
+                                    className="text-sm leading-relaxed"
+                                  >
+                                    {step}
+                                  </li>
+                                ),
+                              )}
                             </ol>
                           </CardContent>
                         </Card>
@@ -558,19 +610,25 @@ export default function Dashboard() {
                               <div className="text-2xl font-bold text-blue-600">
                                 {analysisResults.metrics.llm_input_tokens.toLocaleString()}
                               </div>
-                              <div className="text-xs text-muted-foreground">Input Tokens</div>
+                              <div className="text-xs text-muted-foreground">
+                                Input Tokens
+                              </div>
                             </div>
                             <div>
                               <div className="text-2xl font-bold text-green-600">
                                 {analysisResults.metrics.llm_output_tokens.toLocaleString()}
                               </div>
-                              <div className="text-xs text-muted-foreground">Output Tokens</div>
+                              <div className="text-xs text-muted-foreground">
+                                Output Tokens
+                              </div>
                             </div>
                             <div>
                               <div className="text-2xl font-bold text-purple-600">
                                 {analysisResults.metrics.total_llm_tokens.toLocaleString()}
                               </div>
-                              <div className="text-xs text-muted-foreground">Total Tokens</div>
+                              <div className="text-xs text-muted-foreground">
+                                Total Tokens
+                              </div>
                             </div>
                           </div>
                         </CardContent>
@@ -582,7 +640,10 @@ export default function Dashboard() {
                           <Copy className="mr-2 h-4 w-4" />
                           Copy Analysis
                         </Button>
-                        <Button variant="outline" className="flex-1 transition-all duration-200 hover:scale-105">
+                        <Button
+                          variant="outline"
+                          className="flex-1 transition-all duration-200 hover:scale-105"
+                        >
                           <Save className="mr-2 h-4 w-4" />
                           Save Report
                         </Button>
@@ -626,5 +687,5 @@ export default function Dashboard() {
         </div>
       )}
     </SidebarProvider>
-  )
+  );
 }

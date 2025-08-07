@@ -1,65 +1,71 @@
-import { useState } from 'react'
-import { ArrowLeft, Mail, Lock, Eye, EyeOff } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { useState } from "react";
+import { ArrowLeft, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Login() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
     // Simulate API call and login
     setTimeout(() => {
       // Store login state and user info
-      localStorage.setItem('isLoggedIn', 'true')
-      localStorage.setItem('userEmail', email)
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", email);
 
       // Redirect to connect repository page
-      window.location.href = '/connect-repository'
-    }, 1000)
-  }
+      window.location.href = "/connect-repository";
+    }, 1000);
+  };
 
   const handleGoogleLogin = async () => {
-    setIsGoogleLoading(true)
+    setIsGoogleLoading(true);
 
     // Simulate Google OAuth flow
     setTimeout(() => {
       // Store login state and user info
-      localStorage.setItem('isLoggedIn', 'true')
-      localStorage.setItem('userEmail', 'user@gmail.com')
-      localStorage.setItem('loginMethod', 'google')
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", "user@gmail.com");
+      localStorage.setItem("loginMethod", "google");
 
       // Redirect to connect repository page
-      window.location.href = '/connect-repository'
-    }, 1500)
-  }
+      window.location.href = "/connect-repository";
+    }, 1500);
+  };
 
   const handleForgotPassword = () => {
-    window.location.href = '/forgot-password'
-  }
+    window.location.href = "/forgot-password";
+  };
 
   const handleBackToHome = () => {
-    window.location.href = '/'
-  }
+    window.location.href = "/";
+  };
 
   return (
     <div className="min-h-screen bg-background transition-colors duration-300">
       {/* Header */}
       <header className="flex items-center justify-between p-6 border-b">
         <div className="flex items-center gap-4">
-          <Button 
+          <Button
             onClick={handleBackToHome}
-            variant="ghost" 
+            variant="ghost"
             size="sm"
             className="transition-all duration-200 hover:scale-105"
           >
@@ -93,7 +99,7 @@ export default function Login() {
               </CardDescription>
             </div>
           </CardHeader>
-          
+
           <CardContent className="space-y-6">
             {/* Google Login */}
             <Button
@@ -211,15 +217,15 @@ export default function Login() {
                     Signing in...
                   </>
                 ) : (
-                  'Sign In'
+                  "Sign In"
                 )}
               </Button>
             </form>
 
             <div className="text-center text-sm text-muted-foreground">
-              Don't have an account?{' '}
+              Don't have an account?{" "}
               <Button
-                onClick={() => window.location.href = '/register'}
+                onClick={() => (window.location.href = "/register")}
                 variant="link"
                 className="h-auto p-0 text-primary hover:underline"
               >
@@ -243,7 +249,9 @@ export default function Login() {
               <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
               <div className="text-center">
                 <h3 className="font-semibold">
-                  {isGoogleLoading ? 'Connecting with Google...' : 'Signing you in...'}
+                  {isGoogleLoading
+                    ? "Connecting with Google..."
+                    : "Signing you in..."}
                 </h3>
                 <p className="text-sm text-muted-foreground">
                   Please wait a moment
@@ -254,5 +262,5 @@ export default function Login() {
         </div>
       )}
     </div>
-  )
+  );
 }

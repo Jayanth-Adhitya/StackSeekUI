@@ -25,22 +25,22 @@ export const getRepositories: RequestHandler = async (req, res) => {
     // 1. Getting user's connected git providers from database
     // 2. Fetching repositories from each provider's API
     // 3. Aggregating and returning the results
-    
+
     // For now, return empty array - no placeholder data
     const repositories: Repository[] = [];
 
     const response: RepositoriesResponse = {
       success: true,
-      repositories
+      repositories,
     };
 
     res.json(response);
   } catch (error) {
-    console.error('Error fetching repositories:', error);
+    console.error("Error fetching repositories:", error);
     res.status(500).json({
       success: false,
       repositories: [],
-      error: 'Failed to fetch repositories'
+      error: "Failed to fetch repositories",
     });
   }
 };
