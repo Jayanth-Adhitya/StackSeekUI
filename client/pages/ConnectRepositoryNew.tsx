@@ -134,17 +134,7 @@ export default function ConnectRepository() {
               <span className="text-lg font-semibold">StackSeek</span>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Button
-              onClick={handleSkip}
-              variant="outline"
-              size="sm"
-              className="transition-all duration-200 hover:scale-105"
-            >
-              Skip for now
-            </Button>
-            <ThemeToggle />
-          </div>
+          <ThemeToggle />
         </header>
 
         {/* Main Content */}
