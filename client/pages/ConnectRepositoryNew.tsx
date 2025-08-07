@@ -253,9 +253,14 @@ export default function ConnectRepository() {
               <TabsContent value="oauth" className="space-y-6 mt-6">
                 <div className="text-center space-y-4">
                   <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                    {providers.find(p => p.id === selectedProvider)?.icon && (
-                      <providers.find(p => p.id === selectedProvider)!.icon className="h-8 w-8 text-primary" />
-                    )}
+                    {(() => {
+                      const provider = providers.find(p => p.id === selectedProvider)
+                      if (provider?.icon) {
+                        const Icon = provider.icon
+                        return <Icon className="h-8 w-8 text-primary" />
+                      }
+                      return null
+                    })()}
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold mb-2">Quick & Secure Connection</h3>
