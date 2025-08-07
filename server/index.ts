@@ -1,6 +1,8 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import { getRepositories } from "./routes/repositories";
+import { analyzeError } from "./routes/analyze-error";
 
 export function createServer() {
   const app = express();
@@ -16,11 +18,9 @@ export function createServer() {
     res.json({ message: ping });
   });
 
-  // TODO: Implement real API endpoints
-  // app.get("/api/repository/user", handleGetUserRepositories);
-  // app.post("/api/repository/connect", handleConnectRepository);
-  // app.post("/api/error-analysis/submit", handleErrorAnalysis);
-  // app.delete("/api/repository/delete-user-data", handleDeleteUserData);
+  // API endpoints
+  app.get("/api/repositories", getRepositories);
+  app.post("/api/analyze-error", analyzeError);
 
   // OAuth endpoints for Git providers
   // app.get("/api/auth/oauth/github", handleGitHubOAuth);
