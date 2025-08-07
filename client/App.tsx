@@ -98,191 +98,65 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </header>
 
       {/* Hero Section */}
-      <section
-        style={{
-          padding: "5rem 2rem",
-          textAlign: "center",
-          maxWidth: "1200px",
-          margin: "0 auto",
-        }}
-      >
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            backgroundColor: "rgba(139, 92, 246, 0.1)",
-            color: "#8b5cf6",
-            padding: "6px 12px",
-            borderRadius: "20px",
-            fontSize: "14px",
-            fontWeight: "500",
-            marginBottom: "2rem",
-          }}
-        >
-          <span>⚡</span>
-          Now with Multi-Provider Integration
-        </div>
+      <section className="container mx-auto px-8 py-20 text-center">
+        <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <Badge variant="secondary" className="mb-8 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-200">
+            <span className="mr-2">⚡</span>
+            Now with Multi-Provider Integration
+          </Badge>
 
-        <h1
-          style={{
-            fontSize: "clamp(3rem, 6vw, 4rem)",
-            fontWeight: "bold",
-            marginBottom: "1.5rem",
-            lineHeight: "1.1",
-            letterSpacing: "-0.025em",
-          }}
-        >
-          Error Analysis
-          <br />
-          <span
-            style={{
-              background: "linear-gradient(to right, #8b5cf6, #7c3aed)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Made Simple
-          </span>
-        </h1>
+          <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl animate-in fade-in slide-in-from-bottom-3 duration-1000 delay-300">
+            Error Analysis
+            <br />
+            <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+              Made Simple
+            </span>
+          </h1>
 
-        <p
-          style={{
-            fontSize: "20px",
-            color: "#6b7280",
-            marginBottom: "2.5rem",
-            maxWidth: "768px",
-            margin: "0 auto 2.5rem",
-            lineHeight: "1.6",
-          }}
-        >
-          Analyze, track, and resolve errors across your repositories with
-          AI-powered insights. Connect GitHub, GitLab, Bitbucket, and Azure
-          DevOps for intelligent error analysis.
-        </p>
+          <p className="mx-auto mb-10 max-w-3xl text-lg text-muted-foreground sm:text-xl animate-in fade-in slide-in-from-bottom-2 duration-1000 delay-500">
+            Analyze, track, and resolve errors across your repositories with
+            AI-powered insights. Connect GitHub, GitLab, Bitbucket, and Azure
+            DevOps for intelligent error analysis.
+          </p>
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "12px",
-            marginBottom: "4rem",
-            flexWrap: "wrap",
-          }}
-        >
-          <button
-            onClick={handleStartAnalyzing}
-            style={{
-              padding: "12px 32px",
-              backgroundColor: "#8b5cf6",
-              color: "white",
-              borderRadius: "6px",
-              fontWeight: "500",
-              fontSize: "18px",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              transition: "all 0.2s",
-            }}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = "#7c3aed";
-              e.target.style.transform = "translateY(-2px)";
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = "#8b5cf6";
-              e.target.style.transform = "translateY(0px)";
-            }}
-          >
-            Start Analyzing Errors
-            <span>→</span>
-          </button>
-          <button
-            onClick={handleSignIn}
-            style={{
-              padding: "12px 32px",
-              border: "1px solid #d1d5db",
-              color: "#1a1a1a",
-              borderRadius: "6px",
-              fontWeight: "500",
-              fontSize: "18px",
-              backgroundColor: "white",
-              cursor: "pointer",
-              transition: "all 0.2s",
-            }}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = "#f9fafb";
-              e.target.style.transform = "translateY(-2px)";
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = "white";
-              e.target.style.transform = "translateY(0px)";
-            }}
-          >
-            Sign In
-          </button>
-        </div>
-
-        {/* Demo Dashboard */}
-        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <div
-            style={{
-              border: "1px solid #e5e5e5",
-              borderRadius: "8px",
-              overflow: "hidden",
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-              backgroundColor: "#ffffff",
-            }}
-          >
-            <div
-              style={{
-                aspectRatio: "16/9",
-                background:
-                  "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(124, 58, 237, 0.05))",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "2rem",
-              }}
+          <div className="mb-16 flex flex-wrap items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-1 duration-1000 delay-700">
+            <Button
+              onClick={handleStartAnalyzing}
+              size="lg"
+              className="transition-all duration-200 hover:scale-105 hover:-translate-y-1 shadow-lg hover:shadow-xl"
             >
-              <div style={{ textAlign: "center" }}>
-                <div
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    backgroundColor: "rgba(139, 92, 246, 0.1)",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 1.5rem",
-                    fontSize: "32px",
-                  }}
-                >
-                  📊
+              Start Analyzing Errors
+              <span className="ml-2">→</span>
+            </Button>
+            <Button
+              onClick={handleSignIn}
+              variant="outline"
+              size="lg"
+              className="transition-all duration-200 hover:scale-105 hover:-translate-y-1"
+            >
+              Sign In
+            </Button>
+          </div>
+
+          {/* Demo Dashboard */}
+          <div className="mx-auto max-w-4xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-1000">
+            <Card className="overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-3xl hover:scale-105">
+              <CardContent className="p-0">
+                <div className="aspect-video bg-gradient-to-br from-primary/5 to-purple-500/5 flex items-center justify-center p-8">
+                  <div className="text-center">
+                    <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-4xl transition-transform duration-300 hover:scale-110">
+                      📊
+                    </div>
+                    <h3 className="mb-2 text-lg font-semibold">
+                      Interactive Dashboard
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Real-time error analysis and insights
+                    </p>
+                  </div>
                 </div>
-                <h3
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "600",
-                    marginBottom: "8px",
-                  }}
-                >
-                  Interactive Dashboard
-                </h3>
-                <p
-                  style={{
-                    color: "#6b7280",
-                    fontSize: "14px",
-                  }}
-                >
-                  Real-time error analysis and insights
-                </p>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
