@@ -317,32 +317,32 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
             </Card>
 
             {/* Pro Plan */}
-            <Card className="relative border-blue-200 shadow-2xl hover:shadow-3xl transition-all duration-300 bg-white sm:scale-105 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <Card className="relative border-blue-200 dark:border-blue-700 shadow-2xl hover:shadow-3xl transition-all duration-300 bg-white dark:bg-gray-800 sm:scale-105 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-700 to-blue-500 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
                 Most Popular
               </div>
               <CardContent className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Pro</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Pro</h3>
                 <div className="mb-4 sm:mb-6">
-                  <span className="text-3xl sm:text-4xl font-bold">$19</span>
-                  <span className="text-gray-600 text-base sm:text-lg">/month</span>
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">$19</span>
+                  <span className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">/month</span>
                 </div>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>Unlimited error analyses</span>
+                    <span className="text-gray-700 dark:text-gray-300">Unlimited error analyses</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>Advanced AI with GPT-4</span>
+                    <span className="text-gray-700 dark:text-gray-300">Advanced AI with GPT-4</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>Private repositories</span>
+                    <span className="text-gray-700 dark:text-gray-300">Private repositories</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>Priority support</span>
+                    <span className="text-gray-700 dark:text-gray-300">Priority support</span>
                   </li>
                 </ul>
                 <Button onClick={handleGetStarted} className="w-full bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600">
