@@ -291,25 +291,25 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
 
           <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
             {/* Free Plan */}
-            <Card className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 bg-white/80 backdrop-blur-sm animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <Card className="relative hover:shadow-2xl transition-all duration-300 border-gray-100 dark:border-gray-800 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <CardContent className="p-6 sm:p-8">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">Free</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 dark:text-gray-100">Free</h3>
                 <div className="mb-4 sm:mb-6">
-                  <span className="text-3xl sm:text-4xl font-bold">$0</span>
-                  <span className="text-gray-600 text-base sm:text-lg">/month</span>
+                  <span className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">$0</span>
+                  <span className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">/month</span>
                 </div>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>50 error analyses/month</span>
+                    <span className="text-gray-700 dark:text-gray-300">50 error analyses/month</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>Basic AI suggestions</span>
+                    <span className="text-gray-700 dark:text-gray-300">Basic AI suggestions</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span>Public repositories</span>
+                    <span className="text-gray-700 dark:text-gray-300">Public repositories</span>
                   </li>
                 </ul>
                 <Button variant="outline" onClick={handleGetStarted} className="w-full">Get Started</Button>
