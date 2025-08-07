@@ -26,14 +26,7 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   const [showTestNav, setShowTestNav] = useState(false);
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        backgroundColor: "#ffffff",
-        color: "#1a1a1a",
-      }}
-    >
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       {/* Navigation Test Panel */}
       {showTestNav && (
         <div
