@@ -230,149 +230,50 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </section>
 
       {/* CTA Section */}
-      <section
-        style={{
-          background: "linear-gradient(to right, #8b5cf6, #7c3aed)",
-          color: "white",
-          padding: "5rem 2rem",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            textAlign: "center",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "clamp(2rem, 4vw, 2.5rem)",
-              fontWeight: "bold",
-              marginBottom: "1.5rem",
-              letterSpacing: "-0.025em",
-            }}
-          >
+      <section className="bg-gradient-to-r from-primary to-purple-600 text-primary-foreground py-20">
+        <div className="container mx-auto px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 tracking-tight animate-in fade-in slide-in-from-bottom-2 duration-700">
             Ready to streamline your error analysis?
           </h2>
-          <p
-            style={{
-              fontSize: "20px",
-              marginBottom: "2.5rem",
-              opacity: 0.9,
-              maxWidth: "512px",
-              margin: "0 auto 2.5rem",
-              lineHeight: "1.6",
-            }}
-          >
+          <p className="text-lg sm:text-xl mb-10 opacity-90 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-1 duration-700 delay-200">
             Join thousands of developers who are already saving hours every week
             with intelligent error insights
           </p>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "1rem",
-              flexWrap: "wrap",
-            }}
-          >
-            <button
+          <div className="flex flex-wrap items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-1 duration-700 delay-400">
+            <Button
               onClick={handleGetStarted}
-              style={{
-                padding: "12px 32px",
-                backgroundColor: "white",
-                color: "#8b5cf6",
-                borderRadius: "6px",
-                fontWeight: "500",
-                fontSize: "18px",
-                border: "none",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                transition: "all 0.2s",
-              }}
-              onMouseOver={(e) => {
-                e.target.style.backgroundColor = "#f3f4f6";
-                e.target.style.transform = "translateY(-2px)";
-              }}
-              onMouseOut={(e) => {
-                e.target.style.backgroundColor = "white";
-                e.target.style.transform = "translateY(0px)";
-              }}
+              size="lg"
+              variant="secondary"
+              className="transition-all duration-200 hover:scale-105 hover:-translate-y-1 shadow-lg"
             >
               Get Started for Free
-              <span>→</span>
-            </button>
-            <button
+              <span className="ml-2">→</span>
+            </Button>
+            <Button
               onClick={handleSignIn}
-              style={{
-                padding: "12px 32px",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
-                color: "white",
-                borderRadius: "6px",
-                fontWeight: "500",
-                fontSize: "18px",
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
-                cursor: "pointer",
-                transition: "all 0.2s",
-              }}
-              onMouseOver={(e) => {
-                e.target.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-                e.target.style.transform = "translateY(-2px)";
-              }}
-              onMouseOut={(e) => {
-                e.target.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-                e.target.style.transform = "translateY(0px)";
-              }}
+              size="lg"
+              variant="outline"
+              className="border-primary-foreground/20 bg-primary-foreground/10 text-primary-foreground transition-all duration-200 hover:scale-105 hover:-translate-y-1 hover:bg-primary-foreground/20"
             >
               Sign In
-            </button>
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer
-        style={{
-          borderTop: "1px solid #e5e5e5",
-          backgroundColor: "#f9fafb",
-          padding: "3rem 2rem",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "12px",
-              marginBottom: "1.5rem",
-            }}
-          >
+      <footer className="border-t bg-muted/50 py-12 transition-colors duration-300">
+        <div className="container mx-auto px-8">
+          <div className="flex flex-col items-center justify-center gap-4 text-center">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F3c01044c209e4e76920345f418b746ad%2F933081037c954896b92c871f21dda819?format=webp&width=800"
               alt="StackSeek Logo"
-              style={{
-                height: "48px",
-                width: "auto",
-              }}
+              className="h-10 w-auto transition-transform duration-200 hover:scale-105"
             />
+            <p className="text-muted-foreground">
+              © 2024 StackSeek. Built with modern technologies for modern developers.
+            </p>
           </div>
-          <p
-            style={{
-              textAlign: "center",
-              color: "#6b7280",
-            }}
-          >
-            © 2024 StackSeek. Built with modern technologies for modern
-            developers.
-          </p>
         </div>
       </footer>
     </div>
