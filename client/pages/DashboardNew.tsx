@@ -538,7 +538,7 @@ export default function Dashboard() {
                         </div>
                         <Card className="border-l-4 border-l-success bg-success/5">
                           <CardContent className="p-4">
-                            <p className="text-sm leading-relaxed text-success-foreground">
+                            <p className="text-sm leading-relaxed text-green-800 dark:text-green-200">
                               {analysisResults.analysis.suggested_fix}
                             </p>
                           </CardContent>
