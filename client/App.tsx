@@ -421,19 +421,19 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-32 px-4 bg-gradient-to-br from-blue-50 via-white to-blue-50">
+      <section className="py-16 sm:py-32 px-4 bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-blue-900/20 dark:via-gray-900 dark:to-blue-900/20 transition-colors duration-300">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6 px-2">
             Ready to Debug Smarter?
           </h2>
-          <p className="text-lg sm:text-xl text-gray-700 mb-8 sm:mb-10 leading-relaxed px-4">
+          <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8 sm:mb-10 leading-relaxed px-4">
             Join thousands of developers who are already saving hours on debugging
           </p>
           <Button size="lg" onClick={handleGetStarted} className="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-xl professional-button px-8 sm:px-12 py-5 sm:py-7 text-base sm:text-lg font-medium">
             Start Your Free Trial
             <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
           </Button>
-          <p className="text-sm sm:text-base text-gray-600 mt-4 sm:mt-6 font-medium px-4">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-4 sm:mt-6 font-medium px-4">
             No credit card required • Free forever for personal use
           </p>
         </div>
