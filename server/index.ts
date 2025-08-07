@@ -1,6 +1,8 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import { getRepositories } from "./routes/repositories";
+import { analyzeError } from "./routes/analyze-error";
 
 export function createServer() {
   const app = express();
