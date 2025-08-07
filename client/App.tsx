@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
-import Dashboard from "@/pages/Dashboard";
+import Dashboard from "@/pages/DashboardNew";
 import ConnectRepository from "@/pages/ConnectRepository";
 import ForgotPassword from "@/pages/ForgotPassword";
 
