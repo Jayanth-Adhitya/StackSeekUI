@@ -247,7 +247,12 @@ export default function Dashboard() {
                     {/* Repository Selector */}
                     <div className="space-y-2">
                       <Label htmlFor="repository">Select Repository</Label>
-                      {repositories.length > 0 ? (
+                      {isLoadingRepositories ? (
+                        <div className="flex items-center gap-2 p-4 border rounded-lg">
+                          <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                          <span className="text-sm text-muted-foreground">Loading repositories...</span>
+                        </div>
+                      ) : repositories.length > 0 ? (
                         <Select value={selectedRepo} onValueChange={setSelectedRepo}>
                           <SelectTrigger className="transition-all duration-200 hover:border-primary/50">
                             <SelectValue placeholder="Choose a repository..." />
@@ -271,10 +276,12 @@ export default function Dashboard() {
                                         <Code className="h-3 w-3" />
                                         {repo.language}
                                       </span>
-                                      <span className="flex items-center gap-1">
-                                        <Star className="h-3 w-3" />
-                                        {repo.stars}
-                                      </span>
+                                      {repo.stars && (
+                                        <span className="flex items-center gap-1">
+                                          <Star className="h-3 w-3" />
+                                          {repo.stars}
+                                        </span>
+                                      )}
                                       <span className="flex items-center gap-1">
                                         <Calendar className="h-3 w-3" />
                                         {repo.updated}
