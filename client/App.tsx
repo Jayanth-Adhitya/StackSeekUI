@@ -196,32 +196,32 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 sm:py-20 px-4 bg-gray-50">
+      <section id="features" className="py-16 sm:py-20 px-4 bg-gray-50 dark:bg-gray-900/50 transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 animate-fade-in">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6 leading-tight px-2">
               Everything You Need to Debug Efficiently
             </h2>
-            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed px-4">
-              DeepNexus provides comprehensive error analysis tools powered by advanced AI
+            <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
+              StackSeek provides comprehensive error analysis tools powered by advanced AI
             </p>
           </div>
 
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {features.map((feature, index) => (
-              <Card 
-                key={index} 
-                className="hover:shadow-2xl transition-all duration-300 border-gray-100 hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in"
+              <Card
+                key={index}
+                className="hover:shadow-2xl transition-all duration-300 border-gray-100 dark:border-gray-800 hover:scale-105 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardContent className="p-6 sm:p-8">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mb-4 sm:mb-6 text-blue-600 shadow-sm">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl flex items-center justify-center mb-4 sm:mb-6 text-blue-600 dark:text-blue-400 shadow-sm">
                     {feature.icon}
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2 sm:mb-3">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2 sm:mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
                     {feature.description}
                   </p>
                 </CardContent>
