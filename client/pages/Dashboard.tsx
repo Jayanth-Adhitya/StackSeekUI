@@ -117,7 +117,7 @@ export default function Dashboard() {
       {/* Vertical Sidebar Navigation */}
       <div
         style={{
-          width: sidebarMinimized ? "70px" : "280px",
+          width: sidebarMinimized ? "60px" : "200px",
           backgroundColor: "white",
           borderRight: "1px solid #e5e7eb",
           display: "flex",
@@ -189,14 +189,15 @@ export default function Dashboard() {
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                padding: "0.75rem 1.5rem",
-                margin: "0 0.75rem",
+                padding: sidebarMinimized ? "0.75rem" : "0.75rem 1rem",
+                margin: sidebarMinimized ? "0 0.5rem" : "0 0.5rem",
                 borderRadius: "6px",
                 textDecoration: "none",
                 backgroundColor: "#f3f4f6",
                 color: "#8b5cf6",
                 fontSize: "14px",
                 fontWeight: "500",
+                justifyContent: sidebarMinimized ? "center" : "flex-start",
               }}
             >
               <span style={{ fontSize: "18px" }}>⚠️</span>
@@ -209,8 +210,8 @@ export default function Dashboard() {
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                padding: "0.75rem 1.5rem",
-                margin: "0 0.75rem",
+                padding: sidebarMinimized ? "0.75rem" : "0.75rem 1rem",
+                margin: sidebarMinimized ? "0 0.5rem" : "0 0.5rem",
                 borderRadius: "6px",
                 border: "none",
                 background: "none",
@@ -219,6 +220,8 @@ export default function Dashboard() {
                 fontWeight: "500",
                 cursor: "pointer",
                 textAlign: "left",
+                justifyContent: sidebarMinimized ? "center" : "flex-start",
+                width: sidebarMinimized ? "auto" : "100%",
               }}
             >
               <span style={{ fontSize: "18px" }}>📁</span>
@@ -231,13 +234,14 @@ export default function Dashboard() {
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                padding: "0.75rem 1.5rem",
-                margin: "0 0.75rem",
+                padding: sidebarMinimized ? "0.75rem" : "0.75rem 1rem",
+                margin: sidebarMinimized ? "0 0.5rem" : "0 0.5rem",
                 borderRadius: "6px",
                 textDecoration: "none",
                 color: "#6b7280",
                 fontSize: "14px",
                 fontWeight: "500",
+                justifyContent: sidebarMinimized ? "center" : "flex-start",
               }}
             >
               <span style={{ fontSize: "18px" }}>📊</span>
@@ -250,13 +254,14 @@ export default function Dashboard() {
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                padding: "0.75rem 1.5rem",
-                margin: "0 0.75rem",
+                padding: sidebarMinimized ? "0.75rem" : "0.75rem 1rem",
+                margin: sidebarMinimized ? "0 0.5rem" : "0 0.5rem",
                 borderRadius: "6px",
                 textDecoration: "none",
                 color: "#6b7280",
                 fontSize: "14px",
                 fontWeight: "500",
+                justifyContent: sidebarMinimized ? "center" : "flex-start",
               }}
             >
               <span style={{ fontSize: "18px" }}>📈</span>
@@ -269,13 +274,14 @@ export default function Dashboard() {
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                padding: "0.75rem 1.5rem",
-                margin: "0 0.75rem",
+                padding: sidebarMinimized ? "0.75rem" : "0.75rem 1rem",
+                margin: sidebarMinimized ? "0 0.5rem" : "0 0.5rem",
                 borderRadius: "6px",
                 textDecoration: "none",
                 color: "#6b7280",
                 fontSize: "14px",
                 fontWeight: "500",
+                justifyContent: sidebarMinimized ? "center" : "flex-start",
               }}
             >
               <span style={{ fontSize: "18px" }}>⚙️</span>
@@ -376,7 +382,7 @@ export default function Dashboard() {
       <div
         style={{
           flex: 1,
-          marginLeft: sidebarMinimized ? "70px" : "280px",
+          marginLeft: sidebarMinimized ? "60px" : "200px",
           transition: "margin-left 0.3s ease-in-out",
           minHeight: "100vh",
         }}
