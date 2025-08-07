@@ -488,7 +488,7 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
           </div>
 
           <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-gray-400 text-sm sm:text-base">
-            <p>&copy; 2025 DeepNexus. All rights reserved.</p>
+            <p>&copy; 2025 StackSeek. All rights reserved.</p>
           </div>
         </div>
       </footer>
