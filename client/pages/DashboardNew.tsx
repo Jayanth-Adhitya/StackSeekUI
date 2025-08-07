@@ -97,30 +97,33 @@ export default function Dashboard() {
 
     setIsLoading(true)
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 3000))
-
-      // Mock analysis results
-      const mockResults = {
-        analysis: {
-          root_cause_analysis: "The application attempts to open a PDF file using `fitz.open()` with a path to a file that does not exist on the file system. This directly triggers a `FileNotFoundError` because the code lacks a `try-except` block to gracefully handle scenarios where the input file is missing.",
-          error_location: "/path/to/your/script.py, line 5 (within `extract_text_from_pdf` function)",
-          execution_path: "The main script (indicated by `<module>`) makes a direct call to `extract_text_from_pdf('nonexistent_file.pdf')`. Inside `extract_text_from_pdf`, the `fitz.open()` function is invoked with this non-existent file path, which then propagates the `FileNotFoundError`.",
-          replication_steps: [
-            "Ensure that no file named `nonexistent_file.pdf` exists in the directory where the application's main script is executed.",
-            "Modify the application's main script (e.g., `app.py`) to include a direct call to `extract_text_from_pdf(\"nonexistent_file.pdf\")` at a point in the code that gets executed (e.g., at the global scope, before `app.run()`). The provided stack trace suggests this call was on line 10.",
-            "Run the modified Python script."
-          ],
-          suggested_fix: "Implement `try-except FileNotFoundError` blocks around file opening operations (e.g., `fitz.open()`, `DocxDocument()`, `document.LoadFromFile()`) in functions like `extract_text_from_pdf`, `extract_text_from_docx`, and `convert_doc_to_docx`. These blocks should catch the error and either return `None` or raise a more specific, handled exception to allow the calling functions (like `parse_resume_from_file`) to manage the missing file gracefully."
+      const response = await fetch('/api/analyze-error', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+          'Content-Type': 'application/json'
         },
-        metrics: {
-          llm_input_tokens: 3386,
-          llm_output_tokens: 417,
-          total_llm_tokens: 3803
-        }
+        body: JSON.stringify({
+          repositoryId: selectedRepo,
+          errorMessage: errorMessage.trim(),
+          codeSnippet: codeSnippet.trim() || null
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`Analysis failed: ${response.status} ${response.statusText}`)
       }
 
-      setAnalysisResults(mockResults)
+      const results = await response.json()
+
+      if (results.success) {
+        setAnalysisResults(results.data)
+      } else {
+        throw new Error(results.error || 'Analysis failed')
+      }
+    } catch (error) {
+      console.error('Error analyzing error:', error)
+      alert(`Failed to analyze error: ${error.message}`)
     } finally {
       setIsLoading(false)
     }
