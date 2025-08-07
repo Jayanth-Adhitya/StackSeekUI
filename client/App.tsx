@@ -104,15 +104,16 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">
-              <a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Features</a>
-              <a href="#how-it-works" onClick={(e) => handleScrollToSection(e, 'how-it-works')} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">How It Works</a>
-              <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Pricing</a>
-              <Button variant="ghost" onClick={handleSignIn} className="font-medium hover:text-blue-600 transition-colors">
+              <a href="#features" onClick={(e) => handleScrollToSection(e, 'features')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Features</a>
+              <a href="#how-it-works" onClick={(e) => handleScrollToSection(e, 'how-it-works')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">How It Works</a>
+              <a href="#pricing" onClick={(e) => handleScrollToSection(e, 'pricing')} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">Pricing</a>
+              <Button variant="ghost" onClick={handleSignIn} className="font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 Sign In
               </Button>
               <Button onClick={handleGetStarted} className="bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600 shadow-lg professional-button font-medium px-6">
                 Get Started Free
               </Button>
+              <ThemeToggle />
             </div>
             
             {/* Mobile Menu Button */}
