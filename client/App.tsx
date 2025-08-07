@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
 import Login from "@/pages/LoginNew";
 import Register from "@/pages/RegisterNew";
 import Dashboard from "@/pages/DashboardNew";
 import ConnectRepository from "@/pages/ConnectRepositoryNew";
 import ForgotPassword from "@/pages/ForgotPasswordNew";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Sparkles, 
-  Zap, 
-  Shield, 
-  Code2, 
-  GitBranch, 
+import {
+  Sparkles,
+  Zap,
+  Shield,
+  Code2,
+  GitBranch,
   LineChart,
   CheckCircle,
   Check,
