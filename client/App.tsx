@@ -29,127 +29,71 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       {/* Navigation Test Panel */}
       {showTestNav && (
-        <div
-          style={{
-            position: "fixed",
-            top: "10px",
-            right: "10px",
-            backgroundColor: "rgba(0, 0, 0, 0.9)",
-            color: "white",
-            borderRadius: "8px",
-            padding: "1rem",
-            zIndex: 1000,
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.5rem",
-            minWidth: "200px"
-          }}
-        >
-          <h4 style={{ margin: "0 0 0.5rem 0", fontSize: "14px" }}>🧪 Test Navigation</h4>
-          <button onClick={() => onNavigate("login")} style={{ padding: "0.5rem", backgroundColor: "#3b82f6", color: "white", border: "none", borderRadius: "4px", fontSize: "12px", cursor: "pointer" }}>
-            Login Page
-          </button>
-          <button onClick={() => onNavigate("register")} style={{ padding: "0.5rem", backgroundColor: "#10b981", color: "white", border: "none", borderRadius: "4px", fontSize: "12px", cursor: "pointer" }}>
-            Register Page
-          </button>
-          <button onClick={() => onNavigate("forgot-password")} style={{ padding: "0.5rem", backgroundColor: "#f59e0b", color: "white", border: "none", borderRadius: "4px", fontSize: "12px", cursor: "pointer" }}>
-            Forgot Password
-          </button>
-          <button onClick={() => onNavigate("connect-repository")} style={{ padding: "0.5rem", backgroundColor: "#8b5cf6", color: "white", border: "none", borderRadius: "4px", fontSize: "12px", cursor: "pointer" }}>
-            Connect Repository
-          </button>
-          <button onClick={() => onNavigate("dashboard")} style={{ padding: "0.5rem", backgroundColor: "#ef4444", color: "white", border: "none", borderRadius: "4px", fontSize: "12px", cursor: "pointer" }}>
-            Dashboard
-          </button>
-          <button onClick={() => onNavigate("home")} style={{ padding: "0.5rem", backgroundColor: "#6b7280", color: "white", border: "none", borderRadius: "4px", fontSize: "12px", cursor: "pointer" }}>
-            Home/Landing
-          </button>
-          <button onClick={() => setShowTestNav(false)} style={{ padding: "0.5rem", backgroundColor: "#374151", color: "white", border: "none", borderRadius: "4px", fontSize: "12px", cursor: "pointer", marginTop: "0.5rem" }}>
-            ✕ Close
-          </button>
-        </div>
+        <Card className="fixed top-4 right-4 z-50 min-w-48 animate-in slide-in-from-top-2 duration-200">
+          <CardContent className="p-4 space-y-2">
+            <h4 className="text-sm font-medium mb-3">🧪 Test Navigation</h4>
+            <div className="space-y-2">
+              <Button onClick={() => onNavigate("login")} size="sm" className="w-full justify-start" variant="outline">
+                Login Page
+              </Button>
+              <Button onClick={() => onNavigate("register")} size="sm" className="w-full justify-start" variant="outline">
+                Register Page
+              </Button>
+              <Button onClick={() => onNavigate("forgot-password")} size="sm" className="w-full justify-start" variant="outline">
+                Forgot Password
+              </Button>
+              <Button onClick={() => onNavigate("connect-repository")} size="sm" className="w-full justify-start" variant="outline">
+                Connect Repository
+              </Button>
+              <Button onClick={() => onNavigate("dashboard")} size="sm" className="w-full justify-start" variant="outline">
+                Dashboard
+              </Button>
+              <Button onClick={() => onNavigate("home")} size="sm" className="w-full justify-start" variant="outline">
+                Home/Landing
+              </Button>
+              <Button onClick={() => setShowTestNav(false)} size="sm" className="w-full mt-2" variant="secondary">
+                ✕ Close
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       )}
 
       {/* Header */}
-      <header
-        style={{
-          borderBottom: "1px solid #e5e5e5",
-          padding: "1rem 2rem",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          position: "sticky",
-          top: 0,
-          backgroundColor: "rgba(255, 255, 255, 0.95)",
-          backdropFilter: "blur(10px)",
-          zIndex: 50,
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F3c01044c209e4e76920345f418b746ad%2F933081037c954896b92c871f21dda819?format=webp&width=800"
-            alt="StackSeek Logo"
-            style={{
-              height: "48px",
-              width: "auto",
-            }}
-          />
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <button
-            onClick={() => setShowTestNav(!showTestNav)}
-            style={{
-              padding: "6px 8px",
-              borderRadius: "4px",
-              fontSize: "12px",
-              fontWeight: "500",
-              color: "#6b7280",
-              backgroundColor: "transparent",
-              border: "1px solid #e5e7eb",
-              cursor: "pointer",
-              transition: "background-color 0.2s",
-              marginRight: "8px"
-            }}
-            title="Test Navigation - Click to access all pages"
-          >
-            🧪 Nav
-          </button>
-          <button
-            onClick={handleSignIn}
-            style={{
-              padding: "8px 16px",
-              borderRadius: "6px",
-              fontSize: "14px",
-              fontWeight: "500",
-              color: "#1a1a1a",
-              backgroundColor: "transparent",
-              border: "none",
-              cursor: "pointer",
-              transition: "background-color 0.2s",
-            }}
-            onMouseOver={(e) => (e.target.style.backgroundColor = "#f3f4f6")}
-            onMouseOut={(e) => (e.target.style.backgroundColor = "transparent")}
-          >
-            Sign In
-          </button>
-          <button
-            onClick={handleGetStarted}
-            style={{
-              padding: "8px 16px",
-              backgroundColor: "#8b5cf6",
-              color: "white",
-              borderRadius: "6px",
-              fontSize: "14px",
-              fontWeight: "500",
-              border: "none",
-              cursor: "pointer",
-              transition: "background-color 0.2s",
-            }}
-            onMouseOver={(e) => (e.target.style.backgroundColor = "#7c3aed")}
-            onMouseOut={(e) => (e.target.style.backgroundColor = "#8b5cf6")}
-          >
-            Get Started
-          </button>
+      <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-colors duration-300">
+        <div className="container flex h-16 items-center justify-between px-8">
+          <div className="flex items-center gap-3">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F3c01044c209e4e76920345f418b746ad%2F933081037c954896b92c871f21dda819?format=webp&width=800"
+              alt="StackSeek Logo"
+              className="h-10 w-auto transition-transform duration-200 hover:scale-105"
+            />
+          </div>
+          <div className="flex items-center gap-3">
+            <Button
+              onClick={() => setShowTestNav(!showTestNav)}
+              variant="outline"
+              size="sm"
+              className="transition-all duration-200 hover:scale-105"
+              title="Test Navigation - Click to access all pages"
+            >
+              🧪 Nav
+            </Button>
+            <Button
+              onClick={handleSignIn}
+              variant="ghost"
+              className="transition-all duration-200 hover:scale-105"
+            >
+              Sign In
+            </Button>
+            <Button
+              onClick={handleGetStarted}
+              className="transition-all duration-200 hover:scale-105"
+            >
+              Get Started
+            </Button>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
