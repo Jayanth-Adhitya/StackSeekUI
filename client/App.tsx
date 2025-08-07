@@ -46,18 +46,6 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   const handleGetStarted = () => {
     onNavigate("register");
   };
-  
-  // Force light theme on landing page
-  useEffect(() => {
-    document.documentElement.classList.remove('dark');
-    return () => {
-      // Restore theme on unmount
-      const savedTheme = localStorage.getItem('deepnexus-theme');
-      if (savedTheme === 'dark' || (savedTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      }
-    };
-  }, []);
 
   const features = [
     {
