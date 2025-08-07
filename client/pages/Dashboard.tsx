@@ -632,27 +632,62 @@ export default function Dashboard() {
                     fontSize: "14px",
                     fontWeight: "500",
                     color: "#374151",
-                    marginBottom: "0.5rem",
+                    marginBottom: "0.75rem",
                   }}
                 >
                   Error Message or Stack Trace
                 </label>
-                <textarea
-                  value={errorMessage}
-                  onChange={(e) => setErrorMessage(e.target.value)}
-                  placeholder="Paste your error message or stack trace here..."
+                <div
                   style={{
-                    width: "100%",
-                    height: "120px",
-                    padding: "0.75rem",
-                    border: "1px solid #d1d5db",
-                    borderRadius: "6px",
-                    fontSize: "14px",
-                    fontFamily:
-                      'Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-                    resize: "vertical",
+                    backgroundColor: "#1e1e1e",
+                    border: "2px solid #374151",
+                    borderRadius: "8px",
+                    position: "relative",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
                   }}
-                />
+                >
+                  {/* Code Editor Header */}
+                  <div
+                    style={{
+                      backgroundColor: "#2d2d2d",
+                      borderBottom: "1px solid #404040",
+                      padding: "8px 12px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      borderRadius: "6px 6px 0 0"
+                    }}
+                  >
+                    <div style={{ display: "flex", gap: "6px" }}>
+                      <div style={{ width: "12px", height: "12px", backgroundColor: "#ef4444", borderRadius: "50%" }}></div>
+                      <div style={{ width: "12px", height: "12px", backgroundColor: "#f59e0b", borderRadius: "50%" }}></div>
+                      <div style={{ width: "12px", height: "12px", backgroundColor: "#10b981", borderRadius: "50%" }}></div>
+                    </div>
+                    <span style={{ color: "#9ca3af", fontSize: "12px", fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace' }}>
+                      error.log
+                    </span>
+                  </div>
+
+                  <textarea
+                    value={errorMessage}
+                    onChange={(e) => setErrorMessage(e.target.value)}
+                    placeholder="Paste your error message or stack trace here..."
+                    style={{
+                      width: "100%",
+                      height: "140px",
+                      padding: "16px",
+                      backgroundColor: "transparent",
+                      border: "none",
+                      outline: "none",
+                      color: "#ef4444",
+                      fontSize: "14px",
+                      fontFamily: '"Fira Code", "JetBrains Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+                      resize: "vertical",
+                      letterSpacing: "0.5px",
+                      lineHeight: "1.6"
+                    }}
+                  />
+                </div>
               </div>
 
               {/* Code Snippet (Optional) */}
