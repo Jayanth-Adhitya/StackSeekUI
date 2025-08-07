@@ -88,16 +88,18 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50/30 to-teal-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50/30 to-teal-50/30 dark:from-gray-900 dark:via-purple-900/30 dark:to-teal-900/30 transition-colors duration-300">
       {/* Navigation */}
-      <nav className="bg-white/60 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200/50 shadow-sm">
+      <nav className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200/50 dark:border-gray-700/50 shadow-sm transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3 animate-fade-in">
-              <div className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 bg-gradient-to-br from-blue-700 to-blue-500 rounded-xl shadow-xl transform hover:scale-105 transition-transform">
-                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </div>
-              <h1 className="text-xl sm:text-2xl font-bold text-blue-700">DeepNexus</h1>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F3c01044c209e4e76920345f418b746ad%2F933081037c954896b92c871f21dda819?format=webp&width=800"
+                alt="StackSeek Logo"
+                className="h-10 w-auto transition-transform duration-200 hover:scale-105"
+              />
+              <h1 className="text-xl sm:text-2xl font-bold text-blue-700 dark:text-blue-400">StackSeek</h1>
             </div>
             
             {/* Desktop Navigation */}
