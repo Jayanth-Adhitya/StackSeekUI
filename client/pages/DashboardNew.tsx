@@ -256,9 +256,9 @@ export default function Dashboard() {
 
           {/* Main Content */}
           <main className="p-6">
-            <div className="grid gap-6 lg:grid-cols-12">
+            <div className={`grid gap-6 ${analysisResults ? 'lg:grid-cols-2' : 'lg:grid-cols-1'}`}>
               {/* Left Panel - Error Analysis */}
-              <div className={`lg:col-span-${analysisResults ? "5" : "8"} space-y-6`}>
+              <div className="space-y-6">
                 <Card className="transition-all duration-300 hover:shadow-lg">
                   <CardHeader>
                     <div className="flex items-center gap-2">
