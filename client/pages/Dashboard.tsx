@@ -967,12 +967,10 @@ export default function Dashboard() {
                         top: "8px",
                         left: "12px",
                         display: "flex",
-                        gap: "6px"
+                        alignItems: "center"
                       }}
                     >
-                      <div style={{ width: "12px", height: "12px", backgroundColor: "#ef4444", borderRadius: "50%" }}></div>
-                      <div style={{ width: "12px", height: "12px", backgroundColor: "#f59e0b", borderRadius: "50%" }}></div>
-                      <div style={{ width: "12px", height: "12px", backgroundColor: "#10b981", borderRadius: "50%" }}></div>
+                      <span style={{ color: "#6b7280", fontSize: "14px" }}>$</span>
                     </div>
                     <div style={{ marginTop: "24px", letterSpacing: "0.5px", lineHeight: "1.6" }}>
                       <span style={{ color: "#6b7280" }}>location:</span> <span style={{ color: "#f97316" }}>{analysisResults.analysis.error_location}</span>
