@@ -1,13 +1,12 @@
 import { useState } from "react"
-import { 
-  AlertTriangle, 
-  GitBranch, 
-  BarChart3, 
-  Settings, 
-  History, 
-  LogOut, 
-  Copy, 
-  Save, 
+import {
+  AlertTriangle,
+  GitBranch,
+  BarChart3,
+  Settings,
+  History,
+  Copy,
+  Save,
   X,
   Terminal,
   Folder,
@@ -22,7 +21,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Separator } from "@/components/ui/separator"
 import {
   Select,
@@ -36,7 +34,6 @@ import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
-  SidebarFooter,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
@@ -44,6 +41,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { UserProfile } from "@/components/user-profile"
 
 export default function Dashboard() {
   const [selectedRepo, setSelectedRepo] = useState("")
