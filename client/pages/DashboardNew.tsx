@@ -450,7 +450,7 @@ export default function Dashboard() {
 
               {/* Analysis Results */}
               {analysisResults && (
-                <div className="lg:col-span-7 space-y-6 animate-in slide-in-from-right duration-500">
+                <div className="space-y-6 animate-in slide-in-from-right duration-500">
                   <Card className="transition-all duration-300 hover:shadow-lg">
                     <CardHeader className="pb-4">
                       <div className="flex items-center justify-between">
