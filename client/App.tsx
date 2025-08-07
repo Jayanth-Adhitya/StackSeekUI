@@ -156,20 +156,20 @@ function LandingPage({ onNavigate }: { onNavigate: (page: string) => void }) {
       {/* Hero Section */}
       <section className="relative pt-16 sm:pt-24 pb-24 sm:pb-36 px-4 animate-fade-in">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-blue-50 text-blue-800 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full mb-6 sm:mb-8 shadow-sm text-xs sm:text-sm">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-blue-50 dark:from-blue-900/50 dark:to-blue-800/50 text-blue-800 dark:text-blue-200 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full mb-6 sm:mb-8 shadow-sm text-xs sm:text-sm">
             <Gauge className="w-3 h-3 sm:w-4 sm:h-4" />
             <span className="font-semibold tracking-wide">Trusted by 10,000+ developers worldwide</span>
           </div>
-          
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 sm:mb-8 leading-tight px-2">
-            Debug Smarter,<br />
+
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-gray-100 mb-6 sm:mb-8 leading-tight px-2">
+            Error Analysis<br />
             <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 bg-clip-text text-transparent">
-              Ship Faster
+              Made Simple
             </span>
           </h1>
-          
-          <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed px-4">
-            DeepNexus uses cutting-edge AI to analyze your errors, provide instant solutions, 
+
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed px-4">
+            StackSeek uses cutting-edge AI to analyze your errors, provide instant solutions,
             and help you write better code. Stop wasting hours on debugging.
           </p>
           
